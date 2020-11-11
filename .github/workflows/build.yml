@@ -1,0 +1,37 @@
+name: Build the web site
+on:
+  push:
+    branches: ["develop"]
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Setup Node JS
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Do the build
+        run: |
+          npm install
+          export NODE_ENV=production
+          npm run export
+          git checkout -b release
+          git pull origin release
+          rm -v -rf !\(\".git\"\|\"out\"\)
+          cp -a ./out/. ./
+          rm -rf ./out
+          git config user.name \"Rusith\"
+          git config user.email \"rusith@mail.com\"
+          git commit -m "${{github.event.head_commit.message}}" -a
+      - name: Push the changes to the release branch
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: release
+
+          
