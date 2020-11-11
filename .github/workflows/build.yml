@@ -19,6 +19,7 @@ jobs:
         run: |
           npm install
           export NODE_ENV=production
+          npm run build
           npm run export
           git checkout -b release
           git pull origin release
