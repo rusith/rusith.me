@@ -1,15 +1,10 @@
 import Link from "next/link";
 import React from "react";
+import Home from "modules/home/components/home";
 
-export default function Home() {
+export default function Index() {
   return (
-      <h1>
-          Rusith.Me Home Page
-          
-          <Link href="/blog/" >
-              <a>Blog</a>
-          </Link>
-      </h1>
+      <Home />
   )
 }
 
