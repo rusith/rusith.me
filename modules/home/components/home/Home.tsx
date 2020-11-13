@@ -1,5 +1,5 @@
-import React from "react";
-import Sidebar from "../sidebar";
+import React from "react"
+import Sidebar from "modules/app/components/sidebar"
 
 const Home: React.FC = () => {
     return (

@@ -48,3 +48,21 @@
     left:   1rem;
   }
 }
+
+
+.nav {
+  margin-bottom: 1rem;
+}
+
+.navItem {
+  display: block;
+  line-height: 1.75;
+
+  &:hover, &:focus {
+    text-decoration: underline;
+  }
+
+  &.active {
+    font-weight: bold;
+  }
+}

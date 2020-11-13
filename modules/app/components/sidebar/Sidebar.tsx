@@ -1,8 +1,8 @@
-import React from "react";
+import React from "react"
 import styles from "./Sidebar.module.scss"
 import comp from "styles/comp.module.scss"
 import cn from "classnames"
-import * as consts from "consts";
+import * as consts from "consts"
 import LinkedIn from "icons/linkedin.svg"
 import Facebook from "icons/facebook-square.svg"
 import Twitter from "icons/twitter-square.svg"
@@ -10,6 +10,7 @@ import Github from "icons/github-square.svg"
 import Gitlab from "icons/gitlab.svg"
 import GoodReads from "icons/goodreads.svg"
 import Imdb from "icons/imdb.svg"
+import Link from "next/link"
 
 const Sidebar: React.FC = () => {
     const socialButtons = [
@@ -27,9 +28,11 @@ const Sidebar: React.FC = () => {
             <div className={cn(comp.container, styles.sticky)}>
                 <div className={styles.about}>
                     <h1>
-                        <a href="/">
-                            {consts.title}
-                        </a>
+                        <Link href="/">
+                            <a>
+                                {consts.title}
+                            </a>
+                        </Link>
                     </h1>
                     {socialButtons.map(sb => (
                         <a href={sb.url} className={styles.socialButton} target="_blank">
@@ -37,6 +40,8 @@ const Sidebar: React.FC = () => {
                         </a>
                     ))}
                     <p className={comp.lead}>{consts.description}</p>
+                </div>
+                <div className={styles.nav}>
                 </div>
             </div>
         </div>
