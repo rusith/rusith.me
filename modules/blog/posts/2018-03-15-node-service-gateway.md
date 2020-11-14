@@ -1,4 +1,5 @@
 ---
+layout: post
 title: A Service Gateway Using NodeJS
 tags: programming javascript micro-service web
 comments: true

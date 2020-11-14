@@ -20,5 +20,5 @@ export async function getTopTags(top: number) {
         return a.count - b.count
     })
 
-    return tags.slice(0, 3).map(t => t.tag)
+    return tags.slice(0, top).map(t => t.tag)
 }

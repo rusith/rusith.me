@@ -35,7 +35,7 @@ const Sidebar: React.FC<{topTags: string[]}> = ({ topTags }) => {
                         </Link>
                     </h1>
                     {socialButtons.map(sb => (
-                        <a href={sb.url} className={styles.socialButton} target="_blank">
+                        <a href={sb.url} className={styles.socialButton} target="_blank" key={sb.name}>
                             <img src={sb.icon} alt={sb.name} />
                         </a>
                     ))}

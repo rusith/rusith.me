@@ -1,5 +1,5 @@
 export interface IPostAttributes {
-    path?: string
+    path: string
     oldPath?: string
     title: string
     tags: string[]
@@ -8,5 +8,5 @@ export interface IPostAttributes {
     dateCreated: string
     dateModified?: string
     datePublished?: string
-    draft?: boolean
+    banner?: string
 }

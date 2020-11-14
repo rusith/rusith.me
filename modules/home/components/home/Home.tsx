@@ -9,7 +9,6 @@ const Home: React.FC<{ topTags: string[], latestPosts: IPost[]}> = ({ topTags })
             <Sidebar topTags={topTags} />
             <div className={styles.content}>
                 <div>
-                    
                 </div>
             </div>
         </>
