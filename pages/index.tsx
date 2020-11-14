@@ -1,10 +1,24 @@
-import Link from "next/link";
-import React from "react";
-import Home from "modules/home/components/home";
+import React from "react"
+import Home from "modules/home/components/home"
+import { getTopTags } from "modules/blog/services/tagsService"
+import { getLatestPosts } from "modules/blog/services/postService"
 
-export default function Index() {
+const HomePage: React.FC = (props: any) => {
   return (
-      <Home />
+      <Home {...props} />
   )
 }
+
+export async function getStaticProps() {
+  const top3Tags = await getTopTags(3)
+  const latestPosts = await getLatestPosts()
+  return {
+    props: {
+      topTags: top3Tags,
+      latestPosts
+    }
+  }
+}
+
+export default HomePage
 

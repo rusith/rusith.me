@@ -1,5 +1,5 @@
 import { IPost } from "modules/blog/models/IPost"
-import { getAllPostPaths, getPostForPath } from "modules/blog/services/blogService"
+import { getAllPostPaths, getPostForPath } from "modules/blog/services/postService"
 import React from "react"
 
 const PostPage: React.FC<{ post: IPost}> = ({ post }) => {
@@ -21,7 +21,7 @@ export async function getStaticProps(data: any) {
 
 export async function getStaticPaths() {
     const paths = await getAllPostPaths()
-        
+
     return {
         paths: paths.map(p => "/blog" + p),
         fallback: false

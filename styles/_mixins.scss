@@ -1,0 +1,33 @@
+@import "./vars";
+
+@mixin flex {
+  display: flex;
+}
+
+@mixin flexColumn {
+  @include flex;
+  flex-direction: column;
+}
+
+
+@mixin normalText {
+  font-size: $normal;
+}
+
+@mixin smallText {
+  font-size: 1.1rem;
+}
+
+@mixin verticalCenterText {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+@mixin pointerCursor {
+  cursor: pointer;
+}
+
+@mixin fullSize {
+  width: 100%;
+  height: 100%;
+}

@@ -12,7 +12,7 @@ import GoodReads from "icons/goodreads.svg"
 import Imdb from "icons/imdb.svg"
 import Link from "next/link"
 
-const Sidebar: React.FC = () => {
+const Sidebar: React.FC<{topTags: string[]}> = ({ topTags }) => {
     const socialButtons = [
         { icon: LinkedIn, url: consts.links.linkedIn, name: "LinkedIn"},
         { icon: Facebook, url: consts.links.facebook, name: "Facebook"},
@@ -42,6 +42,15 @@ const Sidebar: React.FC = () => {
                     <p className={comp.lead}>{consts.description}</p>
                 </div>
                 <div className={styles.nav}>
+                    <div className={styles.tagWrapper}>
+                        {topTags.map(t => (
+                            <Link href={"/tag/" + t} key={t}>
+                                <a>
+                                    <span className={cn(styles.tag)}>{t}</span>
+                                </a>
+                            </Link>
+                        ))}
+                    </div>
                 </div>
             </div>
         </div>

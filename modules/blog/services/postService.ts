@@ -39,7 +39,7 @@ async function readAllPosts() {
 }
 
 let allPosts: IPost[] = []
-async function getAllPosts() {
+export async function getAllPosts() {
     if (allPosts.length) {
         return allPosts
     }
@@ -54,6 +54,11 @@ export async function getAllPostPaths() {
 export async function getPostForPath(path: string): Promise<IPost> {
     const posts = await getAllPosts()
     return posts.find(p => p.path.toLowerCase() === path.toLowerCase())
+}
+
+export async function getLatestPosts() {
+    const posts = await getAllPosts()
+    return posts.slice(0, 5)
 }
 
 
