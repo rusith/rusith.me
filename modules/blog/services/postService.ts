@@ -5,6 +5,8 @@ import { IPostAttributes } from "../models/IPostAttributes"
 import { IPost } from "../models/IPost"
 import _ from "lodash"
 import { coalesce } from "utils/common"
+import showdownHighlight from "showdown-highlight"
+import { url } from "consts"
 
 function processAttributes(attributes: any): IPostAttributes {
     const tags = attributes.tags as string
@@ -18,14 +20,31 @@ function processAttributes(attributes: any): IPostAttributes {
     }
 }
 
+function processContent(attr: IPostAttributes, content: string): string {
+    const values = {
+        "page_banner_full_path": attr.banner ? new URL(attr.banner, url).href : '',
+        "base_url": url,
+    }
+
+    let result = content
+
+    for(const key of Object.keys(values)) {
+        result = _.replace(result, `$$${key}`, values[key])
+    }
+
+    return result
+}
+
 async function readPost(file: FileInfo): Promise<IPost> {
     const fileContent = await readFile(file.fullPath)
     const frontParsed = frontMatter(fileContent)
     const postBody = frontParsed.body
     const attributes = processAttributes(frontParsed.attributes)
 
-    const showdownConverter = new showdown.Converter()
-    const parsedContent = showdownConverter.makeHtml(postBody)
+    const showdownConverter = new showdown.Converter({
+        extensions: [showdownHighlight],
+    })
+    const parsedContent =  showdownConverter.makeHtml(processContent(attributes, postBody))
 
     return {
         fileContent,

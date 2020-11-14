@@ -3,7 +3,7 @@ title:  Running a Nuget Feed on S3 with Automated Deployments
 tags: programming dotnet s3 aws nuget
 comments: true
 description: There are many ways of creating a Nuget feed. but did you know that you can run a Nuget feed on S3 without any computing infrastructure? In this post, I will show you how you can create a Nuget feed on S3 using Sleet and automate the deployment process for packages.
-banner: /public/post-data/2019-11-03-nuget-feed-s3/banner.png
+banner: /post-data/2019-11-03-nuget-feed-s3/banner.png
 dateCreated: 2019-11-02
 dateModified: 2019-11-02
 datePublished: 2019-11-03
@@ -14,7 +14,7 @@ oldPath: /2019/11/03/nuget-feed-on-s3
 ---
 
 
-<img class="banner" src="{{ site.url }}{{page.banner}}">
+<img class="banner" src="$$page_banner_full_path">
 
 Whenever you wanted to create a separate Nuget feed for your Nuget packages, there are Nuber of ways to do that. Most of them include some computing. which means you have to provision a  server and run a Nuget application on a computer. But its also possible to create a static Nuget feed on a cloud file system like S3. One way to do this is by using the <a target="_blank" href="https://github.com/emgarten/Sleet">Sleet</a> tool. which is an open-source and free application.
 
@@ -91,12 +91,12 @@ The IAM policy should be something like below. It will give write access to the 
 
 IAM policy is now ready to be used. Now we just have to create a new user and attach the policy to that user. Make sure you have given programmatic access to the user when creating. as we are going to use these credentials only through the API. it is necessary to have programmatic access.
 
-<img src="{{ site.url }}/public/post-data/2019-11-03-nuget-feed-s3/iam-create-user.png">
+<img src="$$base_url/post-data/2019-11-03-nuget-feed-s3/iam-create-user.png">
 
 
 And don't forget to attach the policy you just created.
 
-<img src="{{ site.url }}/public/post-data/2019-11-03-nuget-feed-s3/iam-create-user-policy.png">
+<img src="$$base_url/post-data/2019-11-03-nuget-feed-s3/iam-create-user-policy.png">
 
 
 Once the user is created. don't forget to take a copy of the access keys of the user. Now the IAM part is done. we can go ahead and implement our packages.
@@ -115,7 +115,7 @@ dotnet sln ./NugetPackages.sln add ./Rusith.FileHelpers/Rusith.FileHelpers.cspro
 
 Now you can write your code for each library that should be there in the 1.0 version if you like. And make sure you have filled the information required to create a Nuget package in each project.
 
-<img src="{{ site.url }}/public/post-data/2019-11-03-nuget-feed-s3/project-settings.png">
+<img src="$$base_url/post-data/2019-11-03-nuget-feed-s3/project-settings.png">
 
 Now you will have to initialize the Git repository, create the origin repository and push the code if you haven't already.
 
@@ -195,22 +195,22 @@ What this does is it will run a build for every commit but only run the push scr
 
 Now we have to add the credentials for the user that we created in the IAM console as environment variables in the CI server. the main two variables that are required are `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`.
 
-<img src="{{ site.url }}/public/post-data/2019-11-03-nuget-feed-s3/variables.png">
+<img src="$$base_url/post-data/2019-11-03-nuget-feed-s3/variables.png">
 
 Now, everything is ready to go. Push your code to the `release` branch and it will build the project and Sleet will do its magic to create the Nuget source on S3. 
 
 If you have done everything correctly, You will see an output like below in the CI console.
 
-<img src="{{ site.url }}/public/post-data/2019-11-03-nuget-feed-s3/pipeline-result.png">
+<img src="$$base_url/post-data/2019-11-03-nuget-feed-s3/pipeline-result.png">
 
 And the S3 Bucket content will be updated to look something like below.
 
-<img src="{{ site.url }}/public/post-data/2019-11-03-nuget-feed-s3/s3-result.png">
+<img src="$$base_url/post-data/2019-11-03-nuget-feed-s3/s3-result.png">
 
 Now you can use the Nuget packages you just created. for this, you must first add the URL to the `index.json` file of the S3 bucket as a Nuget source in your IDE. something like below (Rider).
 
-<img src="{{ site.url }}/public/post-data/2019-11-03-nuget-feed-s3/feed.png">
+<img src="$$base_url/post-data/2019-11-03-nuget-feed-s3/feed.png">
 
 And now, you can use the Packages just like you would use a normal Nuget package.
 
-<img src="{{ site.url }}/public/post-data/2019-11-03-nuget-feed-s3/nuget-install.png">
+<img src="$$base_url/post-data/2019-11-03-nuget-feed-s3/nuget-install.png">

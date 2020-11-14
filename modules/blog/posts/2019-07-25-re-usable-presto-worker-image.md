@@ -8,7 +8,7 @@ dateModified: 2019-07-25
 datePublished: 2019-07-25
 dependencies: AWS
 about: Demonstrates how to create a re-usable Presto worker image using a AWS EC2 instance
-banner: /public/post-data/2019-07-25-re-usable-presto-worker/5-workers-dashboard.png
+banner: /post-data/2019-07-25-re-usable-presto-worker/5-workers-dashboard.png
 path: /re-usable-presto-worker-image-ec2
 oldPath: /2019/07/25/re-usable-presto-worker-image
 ---
@@ -27,9 +27,9 @@ Okay, Assuming you have a working coordinator node, let's start creating our Pre
 Create a security group for the worker nodes and allow traffic from the coordinator and allow traffic from the same security group. Also, edit the coordinator group to allow traffic from the worker group.
 
 
-<img alt="Coordinator config" src="{{ site.url }}/public/post-data/2019-07-25-re-usable-presto-worker/sg-coordinator.png">
+<img alt="Coordinator config" src="$$base_url/post-data/2019-07-25-re-usable-presto-worker/sg-coordinator.png">
 
-<img alt="Worker config" src="{{ site.url }}/public/post-data/2019-07-25-re-usable-presto-worker/sg-worker.png">
+<img alt="Worker config" src="$$base_url/post-data/2019-07-25-re-usable-presto-worker/sg-worker.png">
 
 
 Okay, Now our security rules are ready. lets install Presto.
@@ -153,23 +153,23 @@ run `sudo systemctl daemon-reload` and
 
 Restart the instance and Wait few seconds and run `sudo systemctl status presto.service` to see if the service is running.
 
-<img alt="Presto Service Running" src="{{ site.url }}/public/post-data/2019-07-25-re-usable-presto-worker/presto-running.png">
+<img alt="Presto Service Running" src="$$base_url/post-data/2019-07-25-re-usable-presto-worker/presto-running.png">
 
 you can also check the Presto dashboard to see if the worker is connected.
 
-<img alt="Presto Service Running" src="{{ site.url }}/public/post-data/2019-07-25-re-usable-presto-worker/one-worker.png">
+<img alt="Presto Service Running" src="$$base_url/post-data/2019-07-25-re-usable-presto-worker/one-worker.png">
 
 Now, stop the instance and create a machine image from it.
 
-<img alt="Presto Service Running" src="{{ site.url }}/public/post-data/2019-07-25-re-usable-presto-worker/worker-image.png">
+<img alt="Presto Service Running" src="$$base_url/post-data/2019-07-25-re-usable-presto-worker/worker-image.png">
 
 
 Now you can use this machine image to run as many workers you want.
 
 Here, I have started 5 workers.
 
-<img alt="Presto Service Running" src="{{ site.url }}/public/post-data/2019-07-25-re-usable-presto-worker/5-workers-console.png">
+<img alt="Presto Service Running" src="$$base_url/post-data/2019-07-25-re-usable-presto-worker/5-workers-console.png">
 
 And all workers are connected and ready to use.
 
-<img alt="Presto Service Running" src="{{ site.url }}/public/post-data/2019-07-25-re-usable-presto-worker/5-workers-dashboard.png">
+<img alt="Presto Service Running" src="$$base_url/post-data/2019-07-25-re-usable-presto-worker/5-workers-dashboard.png">
