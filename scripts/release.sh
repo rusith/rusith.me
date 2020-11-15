@@ -9,7 +9,7 @@ npm run lint
 npm run build
 npm run export
 shopt -s extglob
-rm -rf !(".git"|"out"|"scripts") 
-rm -rf @(".gitignore"|".github"|".idea"|".vscode") 
+rm -rf !(".git"|"out"|"scripts"|".gitignore") 
+rm -rf @(".github"|".idea"|".vscode") 
 cp -a ./out/. ./
 rm -rf ./out
