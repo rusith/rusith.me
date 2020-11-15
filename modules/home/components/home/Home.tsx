@@ -5,7 +5,15 @@ import { IPost } from "modules/blog/models/IPost"
 import Link from "next/link"
 import { url } from "consts"
 
-const Home: React.FC<{ topTags: string[], latestPosts: IPost[]}> = ({ topTags, latestPosts }) => {
+const Home: React.FC<{ topTags: string[], latestPosts: IPost[], hasNextPage: boolean, hasPreviousPage: boolean, pageNumber: number}> = ({ topTags, latestPosts, hasNextPage, hasPreviousPage, pageNumber }) => {
+
+    const getPageLink = (pageNumber: number) => {
+        if (pageNumber === 1) {
+            return url
+        }
+
+        return `${url}/page${pageNumber}`
+    }
     return (
         <>
             <Sidebar topTags={topTags} />
@@ -31,6 +39,28 @@ const Home: React.FC<{ topTags: string[], latestPosts: IPost[]}> = ({ topTags, l
                             {p.description}
                         </div>
                     ))}
+                </div>
+
+                <div>
+                    {hasPreviousPage && (
+                        <Link href={getPageLink(pageNumber - 1)}>
+                            <a className={styles.paginationItem}>Newer</a>
+                        </Link>
+                    )}
+
+                    {!hasPreviousPage && (
+                        <span className={styles.paginationItem}>Newer</span>
+                    )}
+
+                    {hasNextPage && (
+                        <Link href={getPageLink(pageNumber + 1)}>
+                            <a className={styles.paginationItem}>Older</a>
+                        </Link>
+                    )}
+                    {!hasNextPage && (
+                        <span className={styles.paginationItem}>Older</span>
+                    )}
+
                 </div>
             </div>
         </>

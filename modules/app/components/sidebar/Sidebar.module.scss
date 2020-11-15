@@ -10,17 +10,6 @@
   }
 }
 
-@media (min-width: 48em) {
-  .r {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 18rem;
-    text-align: left;
-  }
-}
-
 .about {
   h1 {
     color: #fff;
@@ -29,6 +18,8 @@
     font-size: 3.25rem;
     margin-bottom:  0;
   }
+  display: flex;
+  flex-direction: column;
 }
 
 .socialButton {
@@ -39,17 +30,13 @@
   margin-bottom: 10px;
 }
 
-.sticky {}
-
-@media (min-width: 48em) {
-  .sticky {
-    position: absolute;
-    right:  1rem;
-    bottom: 1rem;
-    left:   1rem;
-  }
+.socialButtons {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
 }
 
+.sticky {}
 
 .nav {
   margin-bottom: 1rem;
@@ -86,3 +73,28 @@
   padding: 0 8px;
   margin-left: 5px;
 }
+
+@media (min-width: 48em) {
+  .sticky {
+    position: absolute;
+    right:  1rem;
+    bottom: 1rem;
+    left:   1rem;
+  }
+}
+
+@media (min-width: 48em) {
+  .r {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 18rem;
+    text-align: left;
+  }
+
+  .socialButtons {
+    margin-left: 0;
+  }
+}
+

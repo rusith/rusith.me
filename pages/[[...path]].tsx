@@ -31,12 +31,27 @@ async function getPostProps(post: IPost) {
 async function getHomeProps(page = 1) {
   const top3Tags = await getTopTags(3)
   const latestPosts = await getLatestPosts(page)
+  const pageCount = await getAvailablePageCount()
+
+  let hasNextPage = false
+  let hasPreviousPage = false
+
+  if (page < pageCount) {
+    hasNextPage = true
+  }
+
+  if (page > 1) {
+    hasPreviousPage = true
+  }
 
   return {
     props: {
       topTags: top3Tags,
       latestPosts,
-      page: "Home"
+      page: "Home",
+      hasNextPage,
+      hasPreviousPage,
+      pageNumber: page
     }
   }
 }
