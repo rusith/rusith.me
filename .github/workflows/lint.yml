@@ -1,0 +1,23 @@
+name: Lint the code
+on:
+  push:
+    branches:    
+    - '*'
+    - '!release'
+jobs:
+  build:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Setup Node JS
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Lint the code
+        run: |
+          npm install
+          npm run lint

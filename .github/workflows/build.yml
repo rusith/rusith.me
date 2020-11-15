@@ -1,10 +1,10 @@
-name: Build the web site
+name: Release
 on:
   push:
-    branches: ["develop"]
+    branches: ["release"]
 jobs:
-  build:
-    name: Build
+  release:
+    name: Release
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -22,11 +22,11 @@ jobs:
           rm -rf ./scripts
           git add .
           git commit -m "${{github.event.head_commit.message}}"
-      - name: Push the changes to the release branch
+      - name: Push the changes to the live branch
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: release
+          branch: live
           force: true
 
           
