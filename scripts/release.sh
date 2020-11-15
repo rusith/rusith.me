@@ -4,7 +4,6 @@ export NODE_ENV=production
 git config user.name "Rusith"
 git config user.email "rusith@mail.com"
 git checkout release
-git pull origin release
 npm run lint
 npm run build
 npm run export

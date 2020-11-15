@@ -21,12 +21,7 @@ jobs:
           bash ./scripts/release.sh
           rm -rf ./scripts
           git add .
-          git pull origin release
           git commit -m "${{github.event.head_commit.message}}"
-      - name: Push the changes to the release branch
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: release
+          git push origin release --force
 
           
