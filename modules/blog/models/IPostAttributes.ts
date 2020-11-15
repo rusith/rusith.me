@@ -6,7 +6,9 @@ export interface IPostAttributes {
     comments: boolean
     description: string
     dateCreated: string
+    dateCreatedFormatted: string
     dateModified?: string
     datePublished?: string
     banner?: string
+    fullUrl: string
 }

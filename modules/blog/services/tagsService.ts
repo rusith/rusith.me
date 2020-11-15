@@ -1,4 +1,5 @@
 import { getAllPosts } from "./postService"
+import _ from "lodash"
 
 
 
@@ -16,9 +17,5 @@ export async function getTopTags(top: number) {
         })
     })
 
-    tags.sort((a, b) => {
-        return a.count - b.count
-    })
-
-    return tags.slice(0, top).map(t => t.tag)
+    return _.take(_.orderBy(tags, 'count', 'desc'), top).map(t => t.tag)
 }

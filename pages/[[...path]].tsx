@@ -18,17 +18,19 @@ const HomePage: React.FC = (props: any) => {
 }
 
 async function getPostProps(post: IPost) {
+    const top3Tags = await getTopTags(3)
     return {
         props: {
             post,
-            page: "Post"
+            page: "Post",
+            topTags: top3Tags
         }
     }
 }
 
-async function getHomeProps() {
+async function getHomeProps(page = 1) {
   const top3Tags = await getTopTags(3)
-  const latestPosts = await getLatestPosts()
+  const latestPosts = await getLatestPosts(page)
 
   return {
     props: {
@@ -44,6 +46,11 @@ export async function getStaticProps(a) {
 
   if(path === '/') {
     return getHomeProps()
+  }
+
+  if (path.toLowerCase().match(/page\d/)) {
+    const pageNumber = path.substr(4)
+    return getHomeProps(parseInt(pageNumber, 10))
   }
 
   const post = await getPostForPath(path)
@@ -64,7 +71,9 @@ export async function getStaticPaths() {
 
   if (allPages > 1) {
     _.times(allPages, n => {
-      pages.push(`/page${n}`)
+      if (n > 0) {
+        pages.push(`/page${n + 1}`)
+      }
     })
   }
 

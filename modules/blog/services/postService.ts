@@ -7,16 +7,23 @@ import _ from "lodash"
 import { coalesce } from "utils/common"
 import showdownHighlight from "showdown-highlight"
 import { url } from "consts"
+import {DateTime} from "luxon"
 
 function processAttributes(attributes: any): IPostAttributes {
     const tags = attributes.tags as string
+    const path = "/blog" + attributes.path
+
+    const dateCreated = DateTime.fromJSDate(attributes.dateCreated)
 
     return {
         ...attributes,
         tags:  tags.split(' ').map(a => a.trim()),
         dateCreated: attributes.dateCreated.toString(),
+        dateCreatedFormatted: dateCreated.toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY),
         dateModified: attributes.dateModified?.toString(),
         datePublished: attributes.datePublished?.toString(),
+        fullUrl: new URL(path, url).href,
+        path
     }
 }
 
@@ -28,8 +35,8 @@ function processContent(attr: IPostAttributes, content: string): string {
 
     let result = content
 
-    for(const key of Object.keys(values)) {
-        result = _.replace(result, `$$${key}`, values[key])
+    for (const key of Object.keys(values)) {
+        result = result.split(`$$${key}`).join(values[key])
     }
 
     return result
@@ -64,14 +71,20 @@ export async function getAllPosts() {
     if (allPosts.length) {
         return allPosts
     }
-    return allPosts = _.orderBy(await readAllPosts(), 'dateCreated', 'desc')
+    const ap = _.orderBy(await readAllPosts(), (post: IPost) => {
+        return new Date(post.dateCreated)
+    }, ['desc'])
+
+    allPosts = ap
+    return allPosts
+
 }
 
 export async function getAllPostPaths() {
     const allPosts = await getAllPosts()
     const paths = []
     allPosts.forEach(p => {
-        paths.push("/blog" + p.path)
+        paths.push(p.path)
         if (p.oldPath) {
             paths.push(p.oldPath)
         }
@@ -87,12 +100,6 @@ export async function getPostForPath(p: string): Promise<IPost> {
     if (!path.startsWith("/")) {
         path = "/" + p
     }
-
-    if (path.startsWith("/blog/")) {
-        path = p.substr(4)
-    }
-
-    console.log("SP", path)
 
     return posts.find(p => p.path.toLowerCase() === path.toLowerCase() || coalesce(() => p.oldPath.toLowerCase() === path.toLowerCase(), false))
 }
