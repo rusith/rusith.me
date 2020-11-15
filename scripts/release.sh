@@ -3,6 +3,7 @@ npm install
 export NODE_ENV=production
 git config user.name "Rusith"
 git config user.email "rusith@mail.com"
+git fetch
 git checkout release
 npm run lint
 npm run build
