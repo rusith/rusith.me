@@ -13,7 +13,7 @@ const Post: React.FC<{ post: IPost, topTags: string[]}> = ({ post, topTags }) =>
                 <h1 className={styles.title}>{post.title}</h1>
                 <div className={styles.tags}>
                     {post.tags.map(tag => (
-                        <Link href={url + "/tag/" + tag} key={tag}>
+                        <Link href={url + "/tag/" + tag} key={tag} prefetch={false}>
                             <a className={styles.tag}>{tag}</a>
                         </Link>
                     ))}

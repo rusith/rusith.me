@@ -30,7 +30,7 @@ const Home: React.FC<{ topTags: string[], latestPosts: IPost[], hasNextPage: boo
                             </p>
                             <div className={styles.tags}>
                                 {p.tags.map(tag => (
-                                    <Link href={url + "/tag/" + tag} key={tag}>
+                                    <Link href={url + "/tag/" + tag} key={tag} prefetch={false}>
                                         <a className={styles.tag}>{tag}</a>
                                     </Link>
                                 ))}
@@ -43,7 +43,7 @@ const Home: React.FC<{ topTags: string[], latestPosts: IPost[], hasNextPage: boo
 
                 <div>
                     {hasPreviousPage && (
-                        <Link href={getPageLink(pageNumber - 1)}>
+                        <Link href={getPageLink(pageNumber - 1)} prefetch={false}>
                             <a className={styles.paginationItem}>Newer</a>
                         </Link>
                     )}
@@ -53,7 +53,7 @@ const Home: React.FC<{ topTags: string[], latestPosts: IPost[], hasNextPage: boo
                     )}
 
                     {hasNextPage && (
-                        <Link href={getPageLink(pageNumber + 1)}>
+                        <Link href={getPageLink(pageNumber + 1)} prefetch={false}>
                             <a className={styles.paginationItem}>Older</a>
                         </Link>
                     )}

@@ -28,7 +28,7 @@ const Sidebar: React.FC<{topTags: string[]}> = ({ topTags }) => {
             <div className={cn(comp.container, styles.sticky)}>
                 <div className={styles.about}>
                     <h1>
-                        <Link href="/">
+                        <Link href="/" prefetch={false}>
                             <a>
                                 {consts.title}
                             </a>
@@ -46,7 +46,7 @@ const Sidebar: React.FC<{topTags: string[]}> = ({ topTags }) => {
                 <div className={styles.nav}>
                     <div className={styles.tagWrapper}>
                         {topTags.map(t => (
-                            <Link href={"/tag/" + t} key={t}>
+                            <Link href={"/tag/" + t} key={t} prefetch={false}>
                                 <a>
                                     <span className={cn(styles.tag)}>{t}</span>
                                 </a>
