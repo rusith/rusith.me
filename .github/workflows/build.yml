@@ -19,6 +19,7 @@ jobs:
         run: |
           npm install
           export NODE_ENV=production
+          npm run lint
           npm run build
           npm run export
           git config user.name \"Rusith\"
