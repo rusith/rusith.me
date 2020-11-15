@@ -4,6 +4,7 @@ on:
     branches:    
     - '*'
     - '!release'
+    - '!live'
 jobs:
   build:
     name: Lint
