@@ -8,7 +8,7 @@ git config user.name "Rusith"
 git config user.email "rusith@mail.com"
 git checkout -b release
 git pull origin release
-rm -v -rf !(".git"|"out") 
+rm -v -rf !(".git"|"out"|"scripts") 
 rm -v -rf @(".gitignore"|".github"|".idea"|".vscode") 
 cp -a ./out/. ./
 rm -rf ./out
