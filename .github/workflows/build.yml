@@ -27,7 +27,7 @@ jobs:
           npm run build
           npm run export
           chmod +x ./scripts/release.sh
-          ./scripts/release.sh
+          bash ./scripts/release.sh
           rm -rf ./scripts
           git add .
           git commit -m "${{github.event.head_commit.message}}"
