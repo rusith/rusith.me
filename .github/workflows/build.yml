@@ -17,8 +17,8 @@ jobs:
           node-version: ${{ matrix.node }}
       - name: Do the build
         run: |
-          chmod +x ./release.sh
-          ./release.sh
+          chmod +x ./scripts/release.sh
+          ./scripts/release.sh
           git commit -m "${{github.event.head_commit.message}}"
       - name: Push the changes to the release branch
         uses: ad-m/github-push-action@master
