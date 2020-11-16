@@ -6,8 +6,8 @@ import _ from "lodash"
 import { writeFile } from "utils/file"
 
 export async function createSitemap() {
-    const paths = []
-    let posts = await getAllPosts()
+    let paths = []
+    const posts = await getAllPosts()
     const allPages = await getAvailablePageCount()
 
     posts.forEach(post => {
@@ -17,7 +17,7 @@ export async function createSitemap() {
         }
     })
 
-    posts = [...posts, ...['/', '/about'].map(c => ({ url: c } as any))]
+    paths = [...paths, ...['/', '/about'].map(c => ({ url: c } as any))]
 
     if (allPages > 1) {
         _.times(allPages, n => {
