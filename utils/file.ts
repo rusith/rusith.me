@@ -21,7 +21,7 @@ export async function getFilesInDirectory(directoryPath: string): Promise<FileIn
 
 export async function readFile(filePath: string) {
     return new Promise<string>((resolve, reject) => {
-        fs.readFile(filePath, { flag: '' } , (err, data) => {
+        fs.readFile(filePath , (err, data) => {
             if (err) {
                 return reject(err)
             }
