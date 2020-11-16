@@ -11,4 +11,5 @@ export interface IPostAttributes {
     datePublished?: string
     banner?: string
     fullUrl: string
+    math: any
 }

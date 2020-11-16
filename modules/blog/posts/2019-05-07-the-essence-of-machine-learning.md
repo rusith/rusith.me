@@ -2,7 +2,6 @@
 title: The Essence of Machine Learning
 tags: machineLearning
 comments: true
-hasMath: true
 description: Machine learning can significantly improve the performance of a system. This could be very beneficial for businesses or any other application. So if someone comes to you and suggest you a business idea that involves machine learning, how do you decide that a machine learning implementation is feasible with the particular idea?
 dateCreated: 2019-05-07
 dateModified: 2019-05-07
@@ -10,6 +9,12 @@ datePublished: 2019-05-07
 about: Basic understanding of machine learning. what is the essence of machine learning
 path: /the-essence-of-machine-learning
 oldPath: /2019/05/07/the-essence-of-machine-learning
+math:
+    data: '$$(\boldsymbol{x}_1, y_{1}),(\boldsymbol{x}_2, y_{2}), (\boldsymbol{x}_3, y_{3}), ... ,(\boldsymbol{x}_n, y_{n})$$'
+    x: '\(x\)'
+    y: '\(y\)'
+    targetFunction: '$$f : \boldsymbol{x}  \rightarrow  y$$'
+    hypothesis: '$$g: x \rightarrow y$$'
 ---
 
 Machine learning can significantly improve the performance of a system. This could be very beneficial for businesses or any other application.
@@ -40,29 +45,29 @@ If you can find the pattern mathematically you won't need machine learning in th
 
 Think of a scenario which a bank tries to use a machine learning system to determine a customer is creditworthy or not. They have data from old customers and the customer that they are gonna evaluate each time. so what are the components in this learning scenario?
 
-### Input ($$\boldsymbol{x}$$)
+### Input ($$math-x)
 
 In this case, the credit application is the input for the machine learning system. This is a vector that will include data such as income and age that are related to the expected output which is creditworthiness of the applicant. They don't necessarily directly determine it,  but they are related.
 
-### Output (*y*)
+### Output ($$math-y)
 
 In this case, the output has two possibilities (the customer is creditworthy or not)
 
 ### Target Function
 
-$$f : \boldsymbol{x}  \rightarrow  y$$
+$$math-targetFunction
 
 In this case, this is the ideal credit approval formula which is unknown to us.
 
 ### Data 
 
-$$(\boldsymbol{x}_1, y_{1}), (\boldsymbol{x}_2, y_{2}), (\boldsymbol{x}_3, y_{3}), ... , (\boldsymbol{x}_n, y_{n})$$
+$$math-data
 
-The historical records that can be used to train the model. this includes the attributes ($$boldsymbol{x}$$) and the output they produced ($$y$$) in this case.
+The historical records that can be used to train the model. this includes the attributes ($$math-x) and the output they produced ($$math-y) in this case.
 
 
 ## Hypothesis
 
-$$g: x \rightarrow y$$
+$$math-hypothesis
 
 This is the function we create that will estimate *f*, that's the goal of learning.

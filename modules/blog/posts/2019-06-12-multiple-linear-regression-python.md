@@ -2,7 +2,6 @@
 title: Multiple Linear Regression With Python
 tags: machineLearning dataScience python
 comments: true
-hasMath: true
 description: Regression is a machine learning model which we can use to predict values by using previously observed data. In simple linear regression, we had to use only one independent variable for the prediction. but in the real world often a dependent variable is dependent upon several variables.
 dateCreated: 2019-06-18
 dateModified: 2019-06-18
@@ -11,6 +10,10 @@ dependencies: Python
 about: Introduction to Multiple Linear Regression using Python
 path: /multiple-linear-regression-python
 oldPath: /2019/06/12/multiple-linear-regression-python
+math:
+  mainEq: '$$y =  \beta_0 + \beta_1 x_1 + \beta_2 x_2  + ... \beta_n x_n$$'
+  beta0: \(\beta_0\)
+  beta1n: \(\beta_1 - n\)
 ---
 
 <div class="post-links-box">
@@ -24,10 +27,10 @@ This is where the multiple linear regression model comes in. it allows you to us
 The formula for the multiple linear regression is given below.
 
 <div style="font-size:30px;">
-$$y =  \beta_0 + \beta_1 x_1 + \beta_2 x_2  + ... \beta_n x_n$$
+$$math-mainEq
 </div>
 
-Here $$\beta_0$$ is the constant and $$\beta_1-n$$ are the coefficients that the model will have to figure out throughout the learning process.
+Here $$math-beta0 is the constant and $$math-beta1n are the coefficients that the model will have to figure out throughout the learning process.
 
 The data set that we are going to use in this example is a data set which contains the spending and profit data of some companies. we can use multiple linear regression to identify the correlation of the spending to the profit and predict for a new value set. you can download the data set from [here]($$base_url/post-data/2019-06-12-multiple-linear-regression-with-python/startups.csv).
 

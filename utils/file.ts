@@ -21,11 +21,20 @@ export async function getFilesInDirectory(directoryPath: string): Promise<FileIn
 
 export async function readFile(filePath: string) {
     return new Promise<string>((resolve, reject) => {
-        fs.readFile(filePath, (err, data) => {
+        fs.readFile(filePath, { flag: '' } , (err, data) => {
             if (err) {
                 return reject(err)
             }
             return resolve(data.toString())
         })
     })
+}
+
+export async function writeFile(filePath: string, content: string) {
+    await fs.promises.writeFile(filePath, content, { flag: "w+" })
+}
+
+
+export function fileExists(filePath: string) {
+    return fs.existsSync(filePath)
 }

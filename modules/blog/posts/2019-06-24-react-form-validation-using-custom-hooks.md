@@ -2,7 +2,6 @@
 title: React Form Validation Using Custom Hooks
 tags: web programming react javascript
 comments: true
-hasMath: false
 description: Form validation in react is bit tricky. This is an attempt to make it bit easy by using react hooks. here we write few custom hooks to create a re-usable validation logic that can be used in any form.
 dateCreated: 2019-06-24
 dateModified: 2019-06-24

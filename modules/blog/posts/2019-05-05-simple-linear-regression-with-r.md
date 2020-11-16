@@ -2,7 +2,6 @@
 title: Simple Linear Regression With R
 tags: machineLearning dataScience r
 comments: true
-hasMath: true
 description: Regression models are used to predict real values such as salary, spending, income. Simple linear regression is a model of regression which is used to identify the correlation between two variables and possibly predict the dependent variable by using the independent variable.This will enable us to establish a relationship between two attributes such as Income and Spending and we can use what we know about the relationship to forecast unobserved values. 
 dateCreated: 2019-05-07
 dateModified: 2019-05-07
@@ -11,6 +10,13 @@ dependencies: R
 about: Basic introduction on Simple Linear Regression using R language
 path: /simple-linear-regression-with-r
 oldPath: /2019/05/05/simple-linear-regression-with-r
+math:
+  x: '\(x\)'
+  y: '\(y\)'
+  mainEq: '$$y = \beta_{0} + \beta_{1}x$$'
+  beta0: \(\beta_{0}\)
+  beta1: \(\beta_{1}\)
+  plot: \(y=4+2x\)
 ---
 
 <div class="post-links-box">
@@ -25,24 +31,40 @@ This will enable us to establish a relationship between two attributes such as I
 
 There should be two variables when it comes to simple linear regression. which are the dependent variable and the independent variable
 
-| Dependent Variable                    | Independent Variable             |
-|---------------------------------------|----------------------------------|
-| This is the value we want to forecast | This explains the other variable |
-| Value depends on another variable     | Independent of other values      |
-| Usually denoted as $$y$$              | Usually denoted as $$x$$         |
-
+<table>
+  <thead>
+    <tr>
+      <th>Dependent Variable</th>
+      <th>Independent Variable</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+    This is the value we want to forecast
+    Value depends on another variable    
+    Usually denoted as $$math-x          
+      </td>
+      <td>
+  This explains the other variable
+  Independent of other values     
+  Usually denoted as $$math-y     
+      </td>
+    </tr>
+  <tbody>
+<table>
 
 In simple linear regression, we use the equation,
 
 <div style="font-size:30px;">
-$$y = \beta_{0} + \beta_{1}x$$
+$$math-mainEq
 </div>
 
-In which $$\beta_{0}$$ is a constant (*y* intercept) and $$\beta_{1}$$ is the coefficient or the slope of $$x$$
+In which $$math-beta0 is a constant ($$math-x intercept) and $$math-beta1 is the coefficient or the slope of $$math-x
 
 We call this a linear equation as it will represent a straight line if we were to plot this in a bidimensional plain.
 
-So if you were to plot $$y=4+2x$$,
+So if you were to plot $$math-plot ,
 
 <img src="$$base_url/post-data/2019-05-05-simple-linear-regression-with-r/sample-plot-1.png" style="width:500px">
 
