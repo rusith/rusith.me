@@ -1,6 +1,6 @@
 import React from "react"
 import Home from "modules/home/components/home"
-import { getAllPostPaths, getAvailablePageCount, getLatestPosts, getPostForPath } from "modules/blog/services/postService"
+import { getAllPostPaths, getAvailablePageCount, getLatestPosts, getPostForPath, getRelatedPosts } from "modules/blog/services/postService"
 import _ from "lodash"
 import { coalesce } from "utils/common"
 import { getTopTags } from "modules/blog/services/tagsService"
@@ -19,11 +19,13 @@ const HomePage: React.FC = (props: any) => {
 
 async function getPostProps(post: IPost) {
     const top3Tags = await getTopTags(3)
+    const relatedPosts = await getRelatedPosts(post)
     return {
         props: {
             post,
             page: "Post",
-            topTags: top3Tags
+            topTags: top3Tags,
+            relatedPosts
         }
     }
 }

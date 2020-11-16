@@ -4,13 +4,14 @@ import { coalesce } from "utils/common"
 import { isPord } from "consts"
 import { readAllPosts, readPost } from "./postrReader"
 import { fileExists, readFile, writeFile } from "utils/file"
+import IPostLink from "../models/IPostLink"
 
 
-export async function getAllPosts() {
+export async function getAllPosts(): Promise<IPost[]> {
     const cache = "./all_posts_cache.json"
     let allPosts = []
     if (fileExists(cache)) {
-        allPosts = JSON.parse(await readFile(cache))
+        allPosts = JSON.parse(await readFile(cache)) as IPost[]
         if (allPosts.length) {
             return allPosts
         }
@@ -71,6 +72,28 @@ export async function getAvailablePageCount(pageSize =  10) {
         return base + 1
     }
     return base
+}
+
+export async function getRelatedPosts(post: IPost): Promise<IPostLink[]> {
+    const tags = post.tags
+    const allPosts = await getAllPosts()
+    const posts = []
+    allPosts.filter(p => p.path !== post.path).forEach(p => {
+        const info = { post: p, count: 0}
+        p.tags.forEach(t => {
+            tags.forEach(tt => {
+                if (tt.toLowerCase() === t.toLowerCase()) {
+                    info.count ++
+                }
+            })
+        })
+
+        if (info.count > 0) {
+            posts.push(info)
+        }
+    })
+
+    return _.take(_.orderBy(posts, ['count'], ['desc']), 3).map(p => ({ title: p.post.title, fullUrl: p.post.fullUrl, date: p.post.dateCreatedFormatted}))
 }
 
 
