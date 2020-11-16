@@ -13,5 +13,8 @@ export const links = {
     imdb: "https://www.imdb.com/user/ur81064939",
 }
 export const profilePicture = url + "/images/rusith/picture.jpg"
+export const defaultBanner =  url + "/images/banner/default.jpg"
+export const twitterHandle = "@rusith_"
+
 
 export const isPord = prod

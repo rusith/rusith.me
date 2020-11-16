@@ -8,8 +8,11 @@ import { IPost } from "modules/blog/models/IPost"
 import Post from "modules/blog/components/post"
 import Tag from "modules/blog/components/tag"
 import About from "modules/home/components/about"
+import SiteHead from "modules/app/components/siteHead"
+import { isPord, title } from "consts"
+import { createSitemap } from "modules/app/services/sitemapService"
 
-const HomePage: React.FC = (props: any) => {
+function getComponent(props: any) {
   if (props.page === "Home") {
     return (<Home {...props} />)
   } else if (props.page === "Post") {
@@ -21,6 +24,12 @@ const HomePage: React.FC = (props: any) => {
   } else {
     return null
   }
+}
+const HomePage: React.FC = (props: any) => {
+ return (<>
+      <SiteHead {...props} />
+      {getComponent(props)}
+  </>)
 }
 
 async function getAboutProps() {
@@ -56,7 +65,7 @@ async function getPostProps(post: IPost) {
             post,
             page: "Post",
             topTags: top3Tags,
-            relatedPosts
+            relatedPosts,
         }
     }
 }
@@ -84,7 +93,7 @@ async function getHomeProps(page = 1) {
       page: "Home",
       hasNextPage,
       hasPreviousPage,
-      pageNumber: page
+      pageNumber: page,
     }
   }
 }
@@ -93,7 +102,7 @@ export async function getStaticProps(a) {
   const path = coalesce(() => (a.params.path as string[]).join('/'), '/')
 
   if(path === '/') {
-    return getHomeProps()
+    return getHomeProps(1)
   }
 
   if (path.toLowerCase().match(/page\d/)) {
@@ -141,10 +150,17 @@ export async function getStaticPaths() {
     })
   }
 
+
+
+  if (isPord) {
+    await createSitemap()
+  }
+
   return {
     paths: pages,
     fallback: false
   }
+
 }
 
 export default HomePage

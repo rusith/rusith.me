@@ -1,11 +1,13 @@
 import Sidebar from "modules/app/components/sidebar"
 import { IPost } from "modules/blog/models/IPost"
 import styles from "./Post.module.scss"
+import comp from "styles/comp.module.scss"
 import React from "react"
 import Link from "next/link"
 import { url } from "consts"
 import IPostLink from "modules/blog/models/IPostLink"
 import { DiscussionEmbed } from 'disqus-react'
+import Head from "next/head"
 
 type Props = {
  post: IPost,
@@ -16,9 +18,8 @@ type Props = {
 const Post: React.FC<Props> = ({ post, topTags, relatedPosts }) => {
     return (
         <>
-            <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
             <Sidebar topTags={topTags} />
-            <div className={styles.content}>
+            <div className={comp.content}>
                 <div>
                     <h1 className={styles.title}>{post.title}</h1>
                     <div className={styles.tags}>
@@ -62,6 +63,32 @@ const Post: React.FC<Props> = ({ post, topTags, relatedPosts }) => {
                     }
                 />
             </div>
+
+
+            <Head>
+                <title>
+                    {post.title}
+                </title>
+                <meta name="description" content={post.description} key="description" />
+                <link rel="canonical" href={post.fullUrl} key="canonical" />
+                <meta property="og:title" content={post.title} key="og_title" />
+                <meta property="og:url" content={post.fullUrl} key="og_url" />
+                <meta property="og:description" content={post.description} key="og_description" />
+                <meta property="twitter:description" content={post.about} key="twitter_description" />
+
+                {(!!post.banner) && (
+                    <>
+                        <meta property="og:image" content={post.banner} key="og_image" />
+                        <meta name="twitter:card" content="summary_large_image" key="twitter_card" />
+                    </>
+                )}
+                {(!post.banner) && (
+                    <meta name="twitter:card" content="summary" key="twitter_card" />
+                )}
+                {post.math && (
+                    <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
+                )}
+            </Head>
         </>
     )
 }

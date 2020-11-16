@@ -12,4 +12,5 @@ export interface IPostAttributes {
     banner?: string
     fullUrl: string
     math: any
+    about?: string
 }

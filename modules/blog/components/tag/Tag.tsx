@@ -4,6 +4,8 @@ import styles from "./Tag.module.scss"
 import React from "react"
 import Link from "next/link"
 import { url } from "consts"
+import comp from "styles/comp.module.scss"
+import Head from "next/head"
 
 type Props = {
     tag: string
@@ -14,7 +16,7 @@ type Props = {
 
 const Tag: React.FC<Props> = ({ tag, posts, topTags, tags }) => {
     return (
-        <div className={styles.content}>
+        <div className={comp.content}>
             <Sidebar topTags={topTags}/>
             <div>
                 <h1>Tag: {tag}</h1>
@@ -44,6 +46,15 @@ const Tag: React.FC<Props> = ({ tag, posts, topTags, tags }) => {
                     </Link>
                 ))}
             </div>
+
+            <Head>
+                <title>
+                    Tag - {tag}
+                </title>
+                <meta name="robots" content="noindex,follow" key="robots" />
+                <meta property="og:url" content={url + "/tag/" + tag} key="og_url" />
+                <meta property="canonical" content={url + "/tag/" + tag} key="canonical" />
+            </Head>
         </div>
     )
 }

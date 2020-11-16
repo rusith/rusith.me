@@ -4,8 +4,17 @@ import styles from "./Home.module.scss"
 import { IPost } from "modules/blog/models/IPost"
 import Link from "next/link"
 import { url } from "consts"
+import comp from "styles/comp.module.scss"
 
-const Home: React.FC<{ topTags: string[], latestPosts: IPost[], hasNextPage: boolean, hasPreviousPage: boolean, pageNumber: number}> = ({ topTags, latestPosts, hasNextPage, hasPreviousPage, pageNumber }) => {
+type Props = {
+ topTags: string[],
+ latestPosts: IPost[],
+ hasNextPage: boolean,
+ hasPreviousPage: boolean,
+ pageNumber: number
+}
+
+const Home: React.FC<Props> = ({ topTags, latestPosts, hasNextPage, hasPreviousPage, pageNumber }) => {
 
     const getPageLink = (pageNumber: number) => {
         if (pageNumber === 1) {
@@ -17,7 +26,7 @@ const Home: React.FC<{ topTags: string[], latestPosts: IPost[], hasNextPage: boo
     return (
         <>
             <Sidebar topTags={topTags} />
-            <div className={styles.content}>
+            <div className={comp.content}>
                 <div>
                     {latestPosts.map(p => (
                         <div className={styles.post} key={p.path}>

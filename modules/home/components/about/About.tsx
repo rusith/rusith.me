@@ -1,13 +1,15 @@
-import { profilePicture, url } from "consts"
+import { profilePicture } from "consts"
 import Sidebar from "modules/app/components/sidebar"
 import React from "react"
 import styles from "./About.module.scss"
+import comp from "styles/comp.module.scss"
+import Head from "next/head"
 
 const About: React.FC<{ topTags: string[] }> = ({ topTags }) => {
     return (
-        <div className={styles.content}>
+        <div className={comp.content}>
             <Sidebar topTags={topTags} />
-            <h1>About</h1>
+            <h1>About me</h1>
             <div className={styles.root}>
                 <div className={styles.image}>
                     <img src={profilePicture} alt="Shanaka Rusith" />
@@ -22,6 +24,11 @@ const About: React.FC<{ topTags: string[] }> = ({ topTags }) => {
                     </p>
                 </div>
             </div>
+            <Head>
+                <title>
+                    About Shanaka Rusith
+                </title>
+            </Head>
         </div>
     )
 }
