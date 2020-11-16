@@ -17,7 +17,7 @@ export async function createSitemap() {
         }
     })
 
-    posts = (posts as any[]).concat(['/', '/about'].map(c => ({ url: c })))
+    posts = [...posts, ...['/', '/about'].map(c => ({ url: c } as any))]
 
     if (allPages > 1) {
         _.times(allPages, n => {
