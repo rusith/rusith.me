@@ -93,7 +93,16 @@ export async function getRelatedPosts(post: IPost): Promise<IPostLink[]> {
         }
     })
 
-    return _.take(_.orderBy(posts, ['count'], ['desc']), 3).map(p => ({ title: p.post.title, fullUrl: p.post.fullUrl, date: p.post.dateCreatedFormatted}))
+    return _.take(_.orderBy(posts, ['count'], ['desc']), 3).map(p => toPostLink(p.post))
+}
+
+export function toPostLink(post: IPost): IPostLink {
+    return {
+        title: post.title,
+        fullUrl: post.fullUrl,
+        date:post.dateCreatedFormatted,
+        description: post.description
+    }
 }
 
 

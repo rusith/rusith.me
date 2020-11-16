@@ -3,18 +3,37 @@ import Home from "modules/home/components/home"
 import { getAllPostPaths, getAvailablePageCount, getLatestPosts, getPostForPath, getRelatedPosts } from "modules/blog/services/postService"
 import _ from "lodash"
 import { coalesce } from "utils/common"
-import { getTopTags } from "modules/blog/services/tagsService"
+import { getAllTags, getPostsForTag, getTopTags } from "modules/blog/services/tagsService"
 import { IPost } from "modules/blog/models/IPost"
 import Post from "modules/blog/components/post"
+import Tag from "modules/blog/components/tag"
 
 const HomePage: React.FC = (props: any) => {
   if (props.page === "Home") {
     return (<Home {...props} />)
   } else if (props.page === "Post") {
     return (<Post {...props} />)
+  } else if (props.page === "Tag") {
+    return (<Tag {...props} />)
   } else {
     return null
   }
+}
+
+
+async function getTagProps(tag: string) {
+    const posts = await getPostsForTag(tag)
+    const tags = await getAllTags(tag)
+    const top3Tags = await getTopTags(3)
+    return {
+        props: {
+            page: "Tag",
+            tag,
+            posts,
+            tags,
+            topTags: top3Tags,
+        }
+    }
 }
 
 async function getPostProps(post: IPost) {
@@ -70,6 +89,11 @@ export async function getStaticProps(a) {
     return getHomeProps(parseInt(pageNumber, 10))
   }
 
+  if (a.params.path[0] === "tag") {
+    const tag = a.params.path[1]
+    return getTagProps(tag)
+  }
+
   const post = await getPostForPath(path)
   if (post) {
     return getPostProps(post)
@@ -80,6 +104,7 @@ export async function getStaticProps(a) {
 export async function getStaticPaths() {
   const postPaths = await getAllPostPaths()
   const allPages = await getAvailablePageCount()
+  const allTags = await getAllTags("_")
   const pages = ['/']
 
   postPaths.forEach(pp => {
@@ -91,6 +116,12 @@ export async function getStaticPaths() {
       if (n > 0) {
         pages.push(`/page${n + 1}`)
       }
+    })
+  }
+
+  if (allTags.length) {
+    allTags.forEach(t => {
+      pages.push("/tag/" + t)
     })
   }
 
