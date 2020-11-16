@@ -1,6 +1,5 @@
 import { url } from "consts"
 import { getAllPosts, getAvailablePageCount } from "modules/blog/services/postService"
-import { getAllTags } from "modules/blog/services/tagsService"
 import { SitemapStream, streamToPromise } from "sitemap"
 import { Readable } from "stream"
 import _ from "lodash"
@@ -18,7 +17,7 @@ export async function createSitemap() {
         }
     })
 
-    posts = (posts as any[]).concat(['/', '/about'])
+    posts = (posts as any[]).concat(['/', '/about'].map(c => ({ url: c })))
 
     if (allPages > 1) {
         _.times(allPages, n => {

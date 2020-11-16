@@ -28,7 +28,7 @@ const SiteHead: React.FC = () => {
             {rendergTag()}
 
             <link rel="apple-touch-icon-precomposed" sizes="144x144" href={`${url}/icons/favicon-144-image.png`}/>
-            <link rel="shortcut icon" href={`${url}/icons/favicon.ico`} />
+            <link rel="shortcut icon" href={`${url}/favicon.ico`} />
             <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
             <meta http-equiv="content-type" content="text/html; charset=utf-8" />
