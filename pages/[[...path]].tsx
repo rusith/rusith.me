@@ -7,6 +7,7 @@ import { getAllTags, getPostsForTag, getTopTags } from "modules/blog/services/ta
 import { IPost } from "modules/blog/models/IPost"
 import Post from "modules/blog/components/post"
 import Tag from "modules/blog/components/tag"
+import About from "modules/home/components/about"
 
 const HomePage: React.FC = (props: any) => {
   if (props.page === "Home") {
@@ -15,11 +16,22 @@ const HomePage: React.FC = (props: any) => {
     return (<Post {...props} />)
   } else if (props.page === "Tag") {
     return (<Tag {...props} />)
+  } else if (props.page === "About") {
+    return (<About {...props} />)
   } else {
     return null
   }
 }
 
+async function getAboutProps() {
+    const top3Tags = await getTopTags(3)
+    return {
+        props: {
+            page: "About",
+            topTags: top3Tags,
+        }
+    }
+}
 
 async function getTagProps(tag: string) {
     const posts = await getPostsForTag(tag)
@@ -94,6 +106,10 @@ export async function getStaticProps(a) {
     return getTagProps(tag)
   }
 
+  if (a.params.path[0] === "about") {
+    return getAboutProps()
+  }
+
   const post = await getPostForPath(path)
   if (post) {
     return getPostProps(post)
@@ -105,7 +121,7 @@ export async function getStaticPaths() {
   const postPaths = await getAllPostPaths()
   const allPages = await getAvailablePageCount()
   const allTags = await getAllTags("_")
-  const pages = ['/']
+  const pages = ['/', '/about']
 
   postPaths.forEach(pp => {
     pages.push(pp)

@@ -12,5 +12,6 @@ export const links = {
     goodReads: "http://goodreads.com/rusith",
     imdb: "https://www.imdb.com/user/ur81064939",
 }
+export const profilePicture = url + "/images/rusith/picture.jpg"
 
 export const isPord = prod
