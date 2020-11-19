@@ -8,6 +8,7 @@ import { url } from "consts"
 import IPostLink from "modules/blog/models/IPostLink"
 import { DiscussionEmbed } from 'disqus-react'
 import Head from "next/head"
+import ShareButtons from "modules/app/components/shareButtons"
 
 type Props = {
  post: IPost,
@@ -32,7 +33,7 @@ const Post: React.FC<Props> = ({ post, topTags, relatedPosts }) => {
                     <span className={styles.date}>{post.dateCreatedFormatted}</span>
                     <div dangerouslySetInnerHTML={{__html: post.parsedContent }}/>
                 </div>
-                {relatedPosts.length && (
+                {!!relatedPosts.length && (
                     <div className="related">
                         <h2>Related Posts</h2>
                         <ul className="related-posts">
@@ -89,6 +90,7 @@ const Post: React.FC<Props> = ({ post, topTags, relatedPosts }) => {
                     <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
                 )}
             </Head>
+            <ShareButtons url={post.fullUrl} />
         </>
     )
 }

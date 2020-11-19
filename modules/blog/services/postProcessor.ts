@@ -2,6 +2,7 @@ import { IPostAttributes } from "../models/IPostAttributes"
 import _ from "lodash"
 import { url } from "consts"
 import {DateTime} from "luxon"
+import postStyles from "../components/post/Post.module.scss"
 
 export function processAttributes(attributes: any): IPostAttributes {
     const tags = attributes.tags as string
@@ -25,6 +26,10 @@ export function processContent(attr: IPostAttributes, content: string): string {
     const values = {
         "page_banner_full_path": attr.banner ? new URL(attr.banner, url).href : '',
         "base_url": url,
+    }
+
+    for(const className of Object.keys(postStyles)) {
+        values[`styles.${className}`] = postStyles[className]
     }
 
     let result = content

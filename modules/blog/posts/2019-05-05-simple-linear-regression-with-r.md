@@ -19,8 +19,8 @@ math:
   plot: \(y=4+2x\)
 ---
 
-<div class="post-links-box">
-  <span class="also-read">also read</span>
+<div class="$$styles.linksBox">
+  <span class="$$styles.alsoRead">Also read</span>
   <p><a target="_blank" href="$$base_url/2019/05/04/data-preprocessing-with-r"> Data pre-processing with R</a></p>
 </div>
 
