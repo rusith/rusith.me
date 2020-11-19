@@ -16,8 +16,8 @@ math:
   beta1n: \(\beta_1 - n\)
 ---
 
-<div class="post-links-box">
-  <span class="also-read">also read</span>
+<div class="$$styles.linksBox">
+  <span class="$$styles.alsoRead">Also read</span>
   <p><a target="_blank" href="$$base_url/2019/05/05/simple-linear-regression-with-r/">Simple Linear Regression</a></p>
 </div>
 
