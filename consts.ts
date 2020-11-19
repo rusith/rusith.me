@@ -15,6 +15,7 @@ export const links = {
 export const profilePicture = url + "/images/rusith/picture.jpg"
 export const defaultBanner =  url + "/images/banner/default.jpg"
 export const twitterHandle = "@rusith_"
+export const rusithFullName = "Shanaka Rusith"
 
 
 export const isPord = prod

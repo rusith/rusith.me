@@ -4,7 +4,7 @@ import styles from "./Post.module.scss"
 import comp from "styles/comp.module.scss"
 import React from "react"
 import Link from "next/link"
-import { url } from "consts"
+import { defaultBanner, rusithFullName, url } from "consts"
 import IPostLink from "modules/blog/models/IPostLink"
 import { DiscussionEmbed } from 'disqus-react'
 import Head from "next/head"
@@ -16,7 +16,51 @@ type Props = {
  relatedPosts: IPostLink[]
 }
 
+export function getSchema(post) {
+    const schema = {
+        "@context": "https://schema.org",
+        headline: post.title,
+        author: {
+            "@type": "Person",
+            name: rusithFullName,
+            url: `${url}/about`
+        },
+        keywords: post.tags.join(","),
+        url: post.fullUrl,
+        description: post.description,
+        copyrightHolder: {
+            "@type": "Person",
+            name: rusithFullName,
+            url: `${url}/about`
+        },
+        copyrightYear: "2021"
+    } as any
+
+    schema["@type"] = post.isNonTech ? "Article" : "TechArticle"
+    schema.image = post.banner ? post.banner : defaultBanner
+
+    if (post.about) {
+        schema.about = post.about
+    }
+
+    if (post.datePublished) {
+        schema.datePublished = post.datePublished
+    }
+
+    if (post.dateCreated) {
+        schema.datePublished = post.dateCreated
+    }
+
+    if (post.dateModified) {
+        schema.dateModified = post.dateModified
+    }
+
+    return schema
+}
+
 const Post: React.FC<Props> = ({ post, topTags, relatedPosts }) => {
+
+
     return (
         <>
             <Sidebar topTags={topTags} />
@@ -89,6 +133,9 @@ const Post: React.FC<Props> = ({ post, topTags, relatedPosts }) => {
                 {post.math && (
                     <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
                 )}
+
+                <script key="schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(getSchema(post))}}>
+                </script>
             </Head>
             <ShareButtons url={post.fullUrl} />
         </>

@@ -57,7 +57,7 @@ export async function getLatestPosts(page = 1, pageSize = 10) {
     const posts = await getAllPosts()
     const skip = page === 1 ? 0 : (page - 1) * pageSize
 
-    const postToReturn = _.take(_.drop(posts, skip), pageSize)
+    const postToReturn = _.take(_.drop(posts, skip), pageSize).map(toPostLink)
     return postToReturn
 }
 
@@ -96,12 +96,30 @@ export async function getRelatedPosts(post: IPost): Promise<IPostLink[]> {
     return _.take(_.orderBy(posts, ['count'], ['desc']), 3).map(p => toPostLink(p.post))
 }
 
+
+export async function getAllPostsForHomePage() {
+    const all = await getAllPosts()
+    return all.map(p => {
+        return {
+            ...toPostLink(p),
+            about: p.about,
+            isNonTech: p.isNonTech || false,
+            banner: p.banner || null,
+            datePublished: p.datePublished || null,
+            dateCreated: p.dateCreated || null,
+            dateModified: p.dateModified || null
+        }
+    })
+}
+
 export function toPostLink(post: IPost): IPostLink {
     return {
         title: post.title,
+        tags: post.tags,
         fullUrl: post.fullUrl,
         date:post.dateCreatedFormatted,
-        description: post.description
+        description: post.description,
+        banner: post.banner || null
     }
 }
 

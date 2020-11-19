@@ -1,8 +1,25 @@
 import React from "react"
 import Head from "next/head"
-import { description, url, defaultBanner, twitterHandle, isPord, title } from "consts"
+import { description, url, defaultBanner, twitterHandle, isPord, title, rusithFullName } from "consts"
+import {getSchema as getPostSchema} from "modules/blog/components/post/Post"
+import { IPost } from "modules/blog/models/IPost"
 
-const SiteHead: React.FC = () => {
+function getSchema(posts: IPost[]) {
+    const schema = {
+        "@context": "http://schema.org",
+        "@type": "Blog",
+        author: {
+            "@type": "Person",
+            name: rusithFullName,
+            url: `${url}/about`
+        },
+        blogPosts: posts ? posts.map(getPostSchema) : []
+    } as any
+
+    return schema
+}
+
+const SiteHead: React.FC<{ allPosts: IPost[] }> = ({ allPosts }) => {
     function rendergTag() {
         if (!isPord) {return null}
 
@@ -45,6 +62,8 @@ const SiteHead: React.FC = () => {
 
             <meta property="twitter:creator" content={twitterHandle} />
             <meta name="robots" content="index,follow" key="robots" />
+
+            <script key="schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(getSchema(allPosts))}}></script>
         </Head>
     )
 }

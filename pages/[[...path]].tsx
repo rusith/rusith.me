@@ -1,6 +1,6 @@
 import React from "react"
 import Home from "modules/home/components/home"
-import { getAllPostPaths, getAvailablePageCount, getLatestPosts, getPostForPath, getRelatedPosts } from "modules/blog/services/postService"
+import { getAllPostPaths, getAllPostsForHomePage, getAvailablePageCount, getLatestPosts, getPostForPath, getRelatedPosts } from "modules/blog/services/postService"
 import _ from "lodash"
 import { coalesce } from "utils/common"
 import { getAllTags, getPostsForTag, getTopTags } from "modules/blog/services/tagsService"
@@ -74,6 +74,7 @@ async function getHomeProps(page = 1) {
   const top3Tags = await getTopTags(3)
   const latestPosts = await getLatestPosts(page)
   const pageCount = await getAvailablePageCount()
+  const allPosts = await getAllPostsForHomePage()
 
   let hasNextPage = false
   let hasPreviousPage = false
@@ -94,6 +95,7 @@ async function getHomeProps(page = 1) {
       hasNextPage,
       hasPreviousPage,
       pageNumber: page,
+      allPosts
     }
   }
 }

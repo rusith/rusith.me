@@ -3,4 +3,6 @@ export default interface IPostLink {
     title: string
     date: string
     description: string
+    tags: string[]
+    banner: string
 }

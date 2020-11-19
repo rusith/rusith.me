@@ -1,9 +1,27 @@
-import { profilePicture } from "consts"
+import { links, profilePicture, rusithFullName } from "consts"
 import Sidebar from "modules/app/components/sidebar"
 import React from "react"
 import styles from "./About.module.scss"
 import comp from "styles/comp.module.scss"
 import Head from "next/head"
+
+function getSchema() {
+    const schema = {
+        "@context": "http://schema.org",
+        "@type": "Person",
+        name: rusithFullName,
+        birthDate: "1996-12-23",
+        email: "rusith@mail.com",
+        gender: "male",
+        jobTitle: "Software Engineer",
+        knowsLanguage: "Sinhalese and English",
+        image: profilePicture,
+        sameAs: [links.facebook, links.github, links.gitlab, links.linkedIn, links.goodReads, links.twitter]
+    } as any
+
+    return schema
+}
+
 
 const About: React.FC<{ topTags: string[] }> = ({ topTags }) => {
     return (
@@ -28,6 +46,8 @@ const About: React.FC<{ topTags: string[] }> = ({ topTags }) => {
                 <title>
                     About Shanaka Rusith
                 </title>
+                <script key="schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(getSchema())}}>
+                </script>
             </Head>
         </div>
     )

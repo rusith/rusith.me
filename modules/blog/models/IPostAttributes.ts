@@ -13,4 +13,5 @@ export interface IPostAttributes {
     fullUrl: string
     math: any
     about?: string
+    isNonTech?: boolean
 }

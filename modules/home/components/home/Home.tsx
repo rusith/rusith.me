@@ -45,6 +45,10 @@ const Home: React.FC<Props> = ({ topTags, latestPosts, hasNextPage, hasPreviousP
                                 ))}
                             </div>
                             <span className={styles.postDate}>{p.dateCreatedFormatted}</span>
+
+                            {p.banner && (
+                                <img src={p.banner} className={styles.postBanner}></img>
+                            )}
                             {p.description}
                         </div>
                     ))}
