@@ -34,9 +34,9 @@ const Post: React.FC<Props> = ({ post, topTags, relatedPosts }) => {
                     <div dangerouslySetInnerHTML={{__html: post.parsedContent }}/>
                 </div>
                 {!!relatedPosts.length && (
-                    <div className="related">
+                    <div className={styles.related}>
                         <h2>Related Posts</h2>
-                        <ul className="related-posts">
+                        <ul className={styles.relatedPosts}>
                             {relatedPosts.map(rp => (
                                 <li key={rp.fullUrl}>
                                     <h3>
