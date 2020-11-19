@@ -85,7 +85,7 @@ const Post: React.FC<Props> = ({ post, topTags, relatedPosts }) => {
                                 <li key={rp.fullUrl}>
                                     <h3>
                                         <Link href={rp.fullUrl}>
-                                            <a href="{{ site.url }}{{ post.url }}">
+                                            <a>
                                                 {rp.title}
                                                 <small>{rp.date}</small>
                                             </a>

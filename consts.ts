@@ -1,8 +1,8 @@
 const prod = process.env.NODE_ENV === 'production'
 
-export const title = "Rusith"
+export const title = "Rusith's Blog - Personal Website and Blog"
 export const description = "A blog from a tech and art enthusiast"
-export const url = prod ? "https://next.rusith.me" : "http://localhost:3000"
+export const url = prod ? "https://rusith.me" : "http://localhost:3000"
 export const links = {
     linkedIn: "https://www.linkedin.com/in/shanaka-rusith",
     facebook: "https://www.facebook.com/shanaka.rusith",
