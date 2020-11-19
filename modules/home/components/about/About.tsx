@@ -20,7 +20,7 @@ const About: React.FC<{ topTags: string[] }> = ({ topTags }) => {
                     <br />
                     Professionally, I am a software engineer with 3+ years of experience. Currently working as a full-stack developer.
                     <br />
-                    I like reading (<a href="http://goodreads.com/rusith" target="_blank">Goodreads</a>), watching movies (<a href="https://www.imdb.com/user/ur81064939/" target="_blank">Imdb</a>). I like to read non-fiction especially Business Philosophy and Psychology books. and enjoy watching good films especially old ones. 
+                    I like reading (<a href="http://goodreads.com/rusith" target="_blank">Goodreads</a>), watching movies (<a href="https://www.imdb.com/user/ur81064939/" target="_blank">Imdb</a>). I like to read non-fiction especially Business Philosophy and Psychology books. and enjoy watching good films especially old ones.
                     </p>
                 </div>
             </div>
