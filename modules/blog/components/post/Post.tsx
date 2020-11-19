@@ -2,7 +2,7 @@ import Sidebar from "modules/app/components/sidebar"
 import { IPost } from "modules/blog/models/IPost"
 import styles from "./Post.module.scss"
 import comp from "styles/comp.module.scss"
-import React from "react"
+import React, { useEffect } from "react"
 import Link from "next/link"
 import { defaultBanner, rusithFullName, url } from "consts"
 import IPostLink from "modules/blog/models/IPostLink"
@@ -59,6 +59,13 @@ export function getSchema(post) {
 }
 
 const Post: React.FC<Props> = ({ post, topTags, relatedPosts }) => {
+
+    // reload MathJax if necessary
+    useEffect(() => {
+        if (post.math && (window as any).MathJax) {
+            (window as any).MathJax.Hub.Typeset()
+        }
+    }, [post.path])
 
 
     return (
