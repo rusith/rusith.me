@@ -30,7 +30,7 @@ const Sidebar: React.FC<{topTags: string[]}> = ({ topTags }) => {
                     <h1>
                         <Link href="/" prefetch={false}>
                             <a>
-                                {consts.title}
+                                {consts.mainHeading}
                             </a>
                         </Link>
                     </h1>
