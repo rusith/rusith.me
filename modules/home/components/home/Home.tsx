@@ -29,7 +29,7 @@ const Home: React.FC<Props> = ({ topTags, latestPosts, hasNextPage, hasPreviousP
             <div className={comp.content}>
                 <div>
                     {latestPosts.map(p => (
-                        <div className={styles.post} key={p.path}>
+                        <div className={styles.post} key={p.fullUrl}>
                             <p className={styles.postTitle}>
                                 <Link href={p.fullUrl}>
                                     <a>
