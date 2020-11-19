@@ -13,7 +13,7 @@ banner: /post-data/2020-04-27-testing-redux-connect/banner.png
 path: /testing-react-redux-connected-components-using-jest
 ---
 
-<img class="banner" src="$$page_banner_full_path">
+<img class="$$styles.banner" src="$$page_banner_full_path">
 
 When writing tests for a React application you might come across the case where you have to test a React
 component that is connected to a Redux store using the `connect` function.
