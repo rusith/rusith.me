@@ -3,10 +3,14 @@ import _ from "lodash"
 import { url } from "consts"
 import {DateTime} from "luxon"
 import postStyles from "../components/post/Post.module.scss"
+import { removeEndingSlash } from "utils/path"
+
 
 export function processAttributes(attributes: any): IPostAttributes {
     const tags = attributes.tags as string
-    const path = "/blog" + attributes.path
+    const path = removeEndingSlash("/blog" + attributes.path)
+    const oldPath = removeEndingSlash(attributes.oldPath)
+
 
     const dateCreated = DateTime.fromJSDate(attributes.dateCreated)
 
@@ -18,7 +22,8 @@ export function processAttributes(attributes: any): IPostAttributes {
         dateModified: attributes.dateModified?.toString(),
         datePublished: attributes.datePublished?.toString(),
         fullUrl: new URL(path, url).href,
-        path
+        path,
+        oldPath
     }
 }
 

@@ -5,6 +5,7 @@ import { isPord } from "consts"
 import { readAllPosts, readPost } from "./postrReader"
 import { fileExists, readFile, writeFile } from "utils/file"
 import IPostLink from "../models/IPostLink"
+import { removeEndingSlash } from "utils/path"
 
 
 export async function getAllPosts(): Promise<IPost[]> {
@@ -39,7 +40,7 @@ export async function getAllPostPaths() {
 
 export async function getPostForPath(p: string): Promise<IPost> {
     const posts = await getAllPosts()
-    let path = p
+    let path = removeEndingSlash(p)
 
     if (!path.startsWith("/")) {
         path = "/" + p
