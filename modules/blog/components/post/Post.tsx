@@ -4,7 +4,7 @@ import styles from "./Post.module.scss"
 import comp from "styles/comp.module.scss"
 import React, { useEffect } from "react"
 import Link from "next/link"
-import { defaultBanner, rusithFullName, url } from "consts"
+import { defaultBanner, profilePicture, rusithFullName, url } from "consts"
 import IPostLink from "modules/blog/models/IPostLink"
 import { DiscussionEmbed } from 'disqus-react'
 import Head from "next/head"
@@ -18,6 +18,7 @@ type Props = {
 
 export function getSchema(post) {
     const schema = {
+        "@type": "BlogPosting",
         "@context": "https://schema.org",
         headline: post.title,
         author: {
@@ -33,10 +34,22 @@ export function getSchema(post) {
             name: rusithFullName,
             url: `${url}/about`
         },
-        copyrightYear: "2021"
+        copyrightYear: "2021",
+        mainEntityOfPage: {
+            "@type": "WebPage",
+            "@id": url
+        },
+        publisher: {
+            "@type": "Organization",
+            name: rusithFullName,
+            url: url + "/about",
+            logo: {
+              "@type": "ImageObject",
+              url: profilePicture
+            }
+        }
     } as any
 
-    schema["@type"] = post.isNonTech ? "Article" : "TechArticle"
     schema.image = post.banner ? post.banner : defaultBanner
 
     if (post.about) {

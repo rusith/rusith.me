@@ -1,6 +1,6 @@
 import React from "react"
 import Head from "next/head"
-import { description, url, defaultBanner, twitterHandle, isPord, title, rusithFullName } from "consts"
+import { description, url, defaultBanner, twitterHandle, isPord, title, rusithFullName, profilePicture } from "consts"
 import {getSchema as getPostSchema} from "modules/blog/components/post/Post"
 import { IPost } from "modules/blog/models/IPost"
 
@@ -13,7 +13,20 @@ function getSchema(posts: IPost[]) {
             name: rusithFullName,
             url: `${url}/about`
         },
-        blogPosts: posts ? posts.map(getPostSchema) : []
+        blogPosts: posts ? posts.map(getPostSchema) : [],
+        mainEntityOfPage: {
+            "@type": "WebPage",
+            "@id": url
+        },
+        publisher: {
+            "@type": "Organization",
+            name: rusithFullName,
+            url: url + "/about",
+            logo: {
+              "@type": "ImageObject",
+              url: profilePicture
+            }
+        }
     } as any
 
     return schema
