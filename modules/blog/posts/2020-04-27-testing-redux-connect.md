@@ -13,7 +13,7 @@ banner: /post-data/2020-04-27-testing-redux-connect/banner.png
 path: /testing-react-redux-connected-components-using-jest
 ---
 
-<img class="$$styles.banner" src="$$page_banner_full_path">
+<img alt="Page banner" class="$$styles.banner" src="$$page_banner_full_path">
 
 When writing tests for a React application you might come across the case where you have to test a React
 component that is connected to a Redux store using the `connect` function.
@@ -24,92 +24,106 @@ and the connect function takes Redux into the picture, so we have a whole layer 
 Let's take this simple login component as an example throughout this article.
 
 ```tsx
-import React, {useEffect} from "react";
-import {useState} from "react";
-import {connect} from "react-redux";
-import {ILoginState, login} from "./state";
+import React, { useEffect } from "react"
+import { useState } from "react"
+import { connect } from "react-redux"
+import { ILoginState, login } from "./state"
 
 interface ILoginProps {
-    loading: boolean;
-    error: string;
+  loading: boolean
+  error: string
 }
 
 interface IDispatchProps {
-    doLogin: typeof login;
+  doLogin: typeof login
 }
 
-type Props = ILoginProps & IDispatchProps;
+type Props = ILoginProps & IDispatchProps
 
-const Login: React.FC<Props> = ({loading, error, doLogin}) => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [showError, setShowError] = useState(false);
+const Login: React.FC<Props> = ({ loading, error, doLogin }) => {
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [showError, setShowError] = useState(false)
 
-    useEffect(() => {
-        setShowError(!!error);
-    }, [error]);
+  useEffect(() => {
+    setShowError(!!error)
+  }, [error])
 
-    const handleLogin = (e) => {
-        const form = e.currentTarget;
-        e.preventDefault();
-        e.stopPropagation();
+  const handleLogin = (e) => {
+    const form = e.currentTarget
+    e.preventDefault()
+    e.stopPropagation()
 
-        if (form.checkValidity()) {
-            doLogin({email, password});
-        }
-    };
+    if (form.checkValidity()) {
+      doLogin({ email, password })
+    }
+  }
 
-    return (
-        <div className="log-in">
-            {loading && <img data-testid="loader" alt="Loading" className="loading" />}
-            {showError && <p data-testid="errorMessage" className="error">{error}</p>}
-            <form onSubmit={handleLogin}>
-                <input data-testid="emailInput" required type="email" onChange={(e) => setEmail(e.target.value)} />
-                <input data-testid="passwordInput" required type="password" onChange={(e) => setPassword(e.target.value)} />
+  return (
+    <div className="log-in">
+      {loading && (
+        <img data-testid="loader" alt="Loading" className="loading" />
+      )}
+      {showError && (
+        <p data-testid="errorMessage" className="error">
+          {error}
+        </p>
+      )}
+      <form onSubmit={handleLogin}>
+        <input
+          data-testid="emailInput"
+          required
+          type="email"
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          data-testid="passwordInput"
+          required
+          type="password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
 
-                <button type="submit" data-testid="loginTrigger">Log In</button>
-            </form>
-        </div>
-    );
-};
+        <button type="submit" data-testid="loginTrigger">
+          Log In
+        </button>
+      </form>
+    </div>
+  )
+}
 
 const mapStateToProps = (state: ILoginState): ILoginProps => ({
-    error: state.error,
-    loading: state.loading,
-});
+  error: state.error,
+  loading: state.loading,
+})
 
 const mapDispatchToProps = {
-    doLogin: login,
-};
+  doLogin: login,
+}
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login)
 ```
 
 And in the same location, the state,
 
 ```tsx
 export function login(loginInfo) {
-    return {
-        payload: loginInfo,
-        type: "LOGIN",
-    };
+  return {
+    payload: loginInfo,
+    type: "LOGIN",
+  }
 }
 
 export interface ILoginState {
-    loading: boolean;
-    error: string;
+  loading: boolean
+  error: string
 }
 ```
 
-
 ## How to Test
 
-As we are going to test the component, First thing we have to do is to isolate it. 
+As we are going to test the component, First thing we have to do is to isolate it.
 A Redux based component can communicate in two ways. It can dispatch actions
-and it can take store updates as props. So that's what we are going to test. 
+and it can take store updates as props. So that's what we are going to test.
 It should dispatch the right actions with the right parameters and it should render the data as intended.
 
 ### Mocking the Store
@@ -122,12 +136,15 @@ Let's create a helper function that will render the component and return the sto
 
 ```tsx
 function renderComponent(state: ILoginState) {
-    const store = mockStore(state);
-    return [render((
-        <Provider store={store}>
-            <LogIn />
-        </Provider>
-    )), store];
+  const store = mockStore(state)
+  return [
+    render(
+      <Provider store={store}>
+        <LogIn />
+      </Provider>
+    ),
+    store,
+  ]
 }
 ```
 
@@ -135,28 +152,33 @@ Now we can use this to render the component inside the Redux provider.
 
 ### Testing Dispatch
 
-Let's write our first test. This will test if the component dispatches 
+Let's write our first test. This will test if the component dispatches
 the login action when the inputs are valid.
 
 ```tsx
 it("should dispatch login action if inputs are valid", () => {
-    const [{getByTestId}, store] = renderComponent({ loading: false, error: null});
+  const [{ getByTestId }, store] = renderComponent({
+    loading: false,
+    error: null,
+  })
 
-    fireEvent.change(getByTestId("emailInput"), {
-        target: { value: "user_one@gmail.com" },
-    });
+  fireEvent.change(getByTestId("emailInput"), {
+    target: { value: "user_one@gmail.com" },
+  })
 
-    fireEvent.change(getByTestId("passwordInput"), {
-        target: { value: "password" },
-    });
+  fireEvent.change(getByTestId("passwordInput"), {
+    target: { value: "password" },
+  })
 
-    fireEvent.click(getByTestId("loginTrigger"));
+  fireEvent.click(getByTestId("loginTrigger"))
 
-    expect(store.getActions()).toContainEqual(login({ email: "user_one@gmail.com", password: "password" }));
-});
+  expect(store.getActions()).toContainEqual(
+    login({ email: "user_one@gmail.com", password: "password" })
+  )
+})
 ```
 
-Here, we submit the form using `fireEvent`. and we expect the list of actions (`getActions()`) of the store 
+Here, we submit the form using `fireEvent`. and we expect the list of actions (`getActions()`) of the store
 to contain login action with the right payload. This way we can simulate user behaviors and check if
 it calls correct action.
 
@@ -169,14 +191,14 @@ For example, let's write two tests to see if we only render the loading indicato
 
 ```tsx
 it("should show loading indicator when loading is set to true", () => {
-    const [{queryByTestId}] = renderComponent({ loading: true } as ILoginState);
-    expect(queryByTestId("loader")).toBeTruthy();
-});
+  const [{ queryByTestId }] = renderComponent({ loading: true } as ILoginState)
+  expect(queryByTestId("loader")).toBeTruthy()
+})
 
 it("should not show loading indicator when loading is set to false", () => {
-    const [{queryByTestId}] = renderComponent({ loading: false } as ILoginState);
-    expect(queryByTestId("loader")).toBeFalsy();
-});
+  const [{ queryByTestId }] = renderComponent({ loading: false } as ILoginState)
+  expect(queryByTestId("loader")).toBeFalsy()
+})
 ```
 
 As you can see we just have to pass the current state that we want and write assertions accordingly.
@@ -192,70 +214,88 @@ Let's write a test for this behavior.
 
 ```tsx
 it("should show error if an error is available", () => {
-    renderComponent({ loading: false, error: null });
-    const [{getByTestId}] = renderComponent({loading: false, error: "something went wrong"});
+  renderComponent({ loading: false, error: null })
+  const [{ getByTestId }] = renderComponent({
+    loading: false,
+    error: "something went wrong",
+  })
 
-    expect(getByTestId("errorMessage")).toHaveTextContent("something went wrong");
-});
+  expect(getByTestId("errorMessage")).toHaveTextContent("something went wrong")
+})
 ```
 
 Below is the complete test file for this component.
 
 ```tsx
-import "@testing-library/jest-dom/extend-expect";
-import {cleanup, fireEvent, render} from "@testing-library/react";
-import React from "react";
-import {Provider} from "react-redux";
-import configureStore from "redux-mock-store";
-import LogIn from "./LogIn";
-import {ILoginState, login} from "./state";
+import "@testing-library/jest-dom/extend-expect"
+import { cleanup, fireEvent, render } from "@testing-library/react"
+import React from "react"
+import { Provider } from "react-redux"
+import configureStore from "redux-mock-store"
+import LogIn from "./LogIn"
+import { ILoginState, login } from "./state"
 
-const mockStore = configureStore([]);
+const mockStore = configureStore([])
 describe("Login", () => {
-    function renderComponent(state: ILoginState) {
-        const store = mockStore(state);
-        return [render((
-            <Provider store={store}>
-                <LogIn />
-            </Provider>
-        )), store];
-    }
+  function renderComponent(state: ILoginState) {
+    const store = mockStore(state)
+    return [
+      render(
+        <Provider store={store}>
+          <LogIn />
+        </Provider>
+      ),
+      store,
+    ]
+  }
 
-    afterAll(cleanup);
+  afterAll(cleanup)
 
-    it("should dispatch login action if inputs are valid", () => {
-        const [{getByTestId}, store] = renderComponent({ loading: false, error: null });
+  it("should dispatch login action if inputs are valid", () => {
+    const [{ getByTestId }, store] = renderComponent({
+      loading: false,
+      error: null,
+    })
 
-        fireEvent.change(getByTestId("emailInput"), {
-            target: { value: "user_one@gmail.com" },
-        });
+    fireEvent.change(getByTestId("emailInput"), {
+      target: { value: "user_one@gmail.com" },
+    })
 
-        fireEvent.change(getByTestId("passwordInput"), {
-            target: { value: "password" },
-        });
+    fireEvent.change(getByTestId("passwordInput"), {
+      target: { value: "password" },
+    })
 
-        fireEvent.click(getByTestId("loginTrigger"));
+    fireEvent.click(getByTestId("loginTrigger"))
 
-        expect(store.getActions()).toContainEqual(login({ email: "user_one@gmail.com", password: "password" }));
-    });
+    expect(store.getActions()).toContainEqual(
+      login({ email: "user_one@gmail.com", password: "password" })
+    )
+  })
 
-    it("should show loading indicator when loading is set to true", () => {
-        const [{queryByTestId}] = renderComponent({ loading: true } as ILoginState);
-        expect(queryByTestId("loader")).toBeTruthy();
-    });
+  it("should show loading indicator when loading is set to true", () => {
+    const [{ queryByTestId }] = renderComponent({
+      loading: true,
+    } as ILoginState)
+    expect(queryByTestId("loader")).toBeTruthy()
+  })
 
-    it("should not show loading indicator when loading is set to false", () => {
-        const [{queryByTestId}] = renderComponent({ loading: false } as ILoginState);
-        expect(queryByTestId("loader")).toBeFalsy();
-    });
+  it("should not show loading indicator when loading is set to false", () => {
+    const [{ queryByTestId }] = renderComponent({
+      loading: false,
+    } as ILoginState)
+    expect(queryByTestId("loader")).toBeFalsy()
+  })
 
-    it("should show error if an error is available", () => {
-        renderComponent({ loading: false, error: null });
-        const [{getByTestId}] = renderComponent({loading: false, error: "something went wrong"});
+  it("should show error if an error is available", () => {
+    renderComponent({ loading: false, error: null })
+    const [{ getByTestId }] = renderComponent({
+      loading: false,
+      error: "something went wrong",
+    })
 
-        expect(getByTestId("errorMessage")).toHaveTextContent("something went wrong");
-    });
-});
+    expect(getByTestId("errorMessage")).toHaveTextContent(
+      "something went wrong"
+    )
+  })
+})
 ```
-
-

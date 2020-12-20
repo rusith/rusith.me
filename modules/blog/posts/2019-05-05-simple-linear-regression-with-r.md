@@ -2,7 +2,7 @@
 title: Simple Linear Regression With R
 tags: machineLearning dataScience r
 comments: true
-description: Regression models are used to predict real values such as salary, spending, income. Simple linear regression is a model of regression which is used to identify the correlation between two variables and possibly predict the dependent variable by using the independent variable.This will enable us to establish a relationship between two attributes such as Income and Spending and we can use what we know about the relationship to forecast unobserved values. 
+description: Regression models are used to predict real values such as salary, spending, income. Simple linear regression is a model of regression which is used to identify the correlation between two variables and possibly predict the dependent variable by using the independent variable.This will enable us to establish a relationship between two attributes such as Income and Spending and we can use what we know about the relationship to forecast unobserved values.
 dateCreated: 2019-05-07
 dateModified: 2019-05-07
 datePublished: 2019-05-07
@@ -26,8 +26,7 @@ math:
 
 Regression models are used to predict real values such as salary, spending, income. Simple linear regression is a model of regression which is used to identify the correlation between two variables and possibly predict the dependent variable by using the independent variable.
 
-This will enable us to establish a relationship between two attributes such as Income and Spending and we can use what we know about the relationship to forecast unobserved values. 
-
+This will enable us to establish a relationship between two attributes such as Income and Spending and we can use what we know about the relationship to forecast unobserved values.
 
 There should be two variables when it comes to simple linear regression. which are the dependent variable and the independent variable
 
@@ -64,16 +63,15 @@ In which $$math-beta0 is a constant ($$math-x intercept) and $$math-beta1 is the
 
 We call this a linear equation as it will represent a straight line if we were to plot this in a bidimensional plain.
 
-So if you were to plot $$math-plot ,
+So if you were to plot \$\$math-plot ,
 
-<img src="$$base_url/post-data/2019-05-05-simple-linear-regression-with-r/sample-plot-1.png" style="width:500px">
+<img alt="Plot of the straight line" src="$$base_url/post-data/2019-05-05-simple-linear-regression-with-r/sample-plot-1.png" style="width:500px" >
 
-The *y* intercept, in this case, is 4 that is the point where the line intercepts the vertical axis *y*. so $$\beta_{0}$$ is 4. and the slope, in this case, is 2 which we can obtain using $$\Delta y / \Delta x$$
-
+The _y_ intercept, in this case, is 4 that is the point where the line intercepts the vertical axis _y_. so $$\beta_{0}$$ is 4. and the slope, in this case, is 2 which we can obtain using $$\Delta y / \Delta x$$
 
 But the data in the real world on average follows a linear pattern and they are not gonna be always in line with our equation. so there will be errors. and what are the errors? an error is at a given point, the difference between real value and the value presented by the equation
 
-<img src="$$base_url/post-data/2019-05-05-simple-linear-regression-with-r/sample-plot-with-data.png" style="width:500px">
+<img alt="Example plot with data included" src="$$base_url/post-data/2019-05-05-simple-linear-regression-with-r/sample-plot-with-data.png" style="width:500px" >
 
 And what the regression algorithm going to do is minimize the errors and adjust the equation to create the line with the least possible errors.
 
@@ -84,21 +82,19 @@ $$y = \beta_0 + \beta_1  x + \varepsilon$$
 </div>
 Okay, now we have a basic idea about linear regression. let's go ahead and use it in R.
 
-
 you can download the data set that I am going to use in this post from
 <a href="$$base_url/post-data/2019-05-05-simple-linear-regression-with-r/salaryData.csv" target="_blank" >Here </a> .
 Download the file as `salaryData.csv` to a folder and set it as the working directory in your R editor
 
-This data set contains a `Salary` and  `TotalExperience` variables which we can assume to have some correlation between them.
+This data set contains a `Salary` and `TotalExperience` variables which we can assume to have some correlation between them.
 
 below is a visualization of the data set.
 
-<img src="$$base_url/post-data/2019-05-05-simple-linear-regression-with-r/data-set-salary-data.png" style="width:500px">
+<img alt="Salary data data set" src="$$base_url/post-data/2019-05-05-simple-linear-regression-with-r/data-set-salary-data.png" style="width:500px" >
 
 Next step is to determine the dependent variable and the independent variable. we can intuitively choose the salary as the dependent variable. so `Salary` will be the dependent variable and `TotalExperience` will be the independent variable.
 
 Now let's load the data set and split the data set into two sets (training set and test set). we will choose `.75` as the ratio as we have 100 records in the data set. this is generally considered as a good ratio.
-
 
 ```R
 # Read the data set
@@ -134,7 +130,6 @@ testPredictions <- predict(regressor, newdata = testSet)
 
 If now you evaluate the `testPredictions` object, you will see all 25 predicted values for `Salary` variable are in this vector.
 
-
 Now we are ready to see some plots. we will have to use another library to visualize our data. We are going to use the `ggplot2` package for this. Install the package if you have not installed it already.
 
 We are going to plot the line for both the test set and the training set. so let's write a function to do this.
@@ -143,7 +138,7 @@ We are going to plot the line for both the test set and the training set. so let
 library(ggplot2)
 # This function will plot the graph using ggplot2 library
 visualize <- function(experience, salary) {
-  ggplot() + 
+  ggplot() +
   ggtitle('Experience vs Salary') +
   xlab('Years of Experience') +
   ylab('Salary') +
@@ -163,13 +158,12 @@ this results in below graphs
 
 for training data
 
-<img src="$$base_url/post-data/2019-05-05-simple-linear-regression-with-r/final-plot-training-data.png" style="width:500px">
+<img alt="Final plot of training data" src="$$base_url/post-data/2019-05-05-simple-linear-regression-with-r/final-plot-training-data.png" style="width:500px" >
 
 for test data
-<img src="$$base_url/post-data/2019-05-05-simple-linear-regression-with-r/final-plot-test-data.png" style="width:500px">
+<img alt="Final plot of test data" src="$$base_url/post-data/2019-05-05-simple-linear-regression-with-r/final-plot-test-data.png" style="width:500px">
 
-
-With these plots, you can see the model has adjusted the equation to create the most error-free line possible. 
+With these plots, you can see the model has adjusted the equation to create the most error-free line possible.
 
 Below is the complete script that we build in this article.
 
@@ -196,7 +190,7 @@ testPredictions <- predict(regressor, newdata = testSet)
 library(ggplot2)
 # This function will plot the graph using ggplot2 library
 visualize <- function(experience, salary) {
-  ggplot() + 
+  ggplot() +
   ggtitle('Experience vs Salary') +
   xlab('Years of Experience') +
   ylab('Salary') +

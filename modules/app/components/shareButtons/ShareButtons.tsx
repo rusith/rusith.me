@@ -13,7 +13,7 @@ const ShareButtons: React.FC<{ url: string }> = ({ url }) => {
         className="sbutton fb"
         title="Share on Facebook"
       >
-          <img src={Facebook} />
+        <img alt="Facebook icon" src={Facebook} />
       </a>
       <a
         href={`https://twitter.com/intent/tweet?text=${url}`}
@@ -21,7 +21,7 @@ const ShareButtons: React.FC<{ url: string }> = ({ url }) => {
         className="sbutton twitt"
         title="Share on Twitter"
       >
-        <img src={Twitter} />
+        <img alt="Twitter icon" src={Twitter} />
       </a>
       <a
         href={`https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=&summary=&source=`}
@@ -29,10 +29,10 @@ const ShareButtons: React.FC<{ url: string }> = ({ url }) => {
         className="sbutton linkedin"
         title="Share on Linkedin"
       >
-          <img src={LinkedIn} />
+        <img alt="LinkedIn icon" src={LinkedIn} />
       </a>
-      <a target="_blank" className="sbutton mainsbutton" >
-          <img src={Share} />
+      <a target="_blank" className="sbutton mainsbutton">
+        <img alt="Share button" src={Share} />
       </a>
     </div>
   )
