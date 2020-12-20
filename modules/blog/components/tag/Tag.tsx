@@ -8,13 +8,14 @@ import comp from "styles/comp.module.scss"
 import Head from "next/head"
 
 type Props = {
-  tag: string;
-  posts: IPostLink[];
-  tags: string[];
-  topTags: string[];
+  tag: string
+  posts: IPostLink[]
+  tags: string[]
+  topTags: string[]
 }
 
 const Tag: React.FC<Props> = ({ tag, posts, topTags, tags }) => {
+  const thisTagUrl = url + "/tag/" + tag
   return (
     <>
       <Sidebar topTags={topTags} />
@@ -48,12 +49,9 @@ const Tag: React.FC<Props> = ({ tag, posts, topTags, tags }) => {
         <Head>
           <title>Tag - {tag}</title>
           <meta name="robots" content="noindex,follow" key="robots" />
-          <meta property="og:url" content={url + "/tag/" + tag} key="og_url" />
-          <meta
-            property="canonical"
-            content={url + "/tag/" + tag}
-            key="canonical"
-          />
+          <meta property="og:url" content={thisTagUrl} key="og_url" />
+          <link rel="canonical" href={thisTagUrl} key="canonical" />
+          <meta property="canonical" content={thisTagUrl} key="canonical" />
         </Head>
       </div>
     </>
