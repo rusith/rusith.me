@@ -1,22 +1,22 @@
-
 .r {
   text-align: center;
   padding: 2rem 1rem;
-  color: rgba(255,255,255,.5);
+  color: rgba(255, 255, 255, 0.5);
   background-color: #202020;
-  
+
   a {
     color: #fff;
   }
 }
 
 .about {
-  h1 {
+  h1,
+  h2 {
     color: #fff;
     margin-top: 0;
     font-family: "Abril Fatface", serif;
     font-size: 3.25rem;
-    margin-bottom:  0;
+    margin-bottom: 0;
   }
   display: flex;
   flex-direction: column;
@@ -24,9 +24,9 @@
 
 .socialButton {
   img {
-    width:  25px;
+    width: 25px;
   }
-  margin-right:  10px;
+  margin-right: 10px;
   margin-bottom: 10px;
 }
 
@@ -36,7 +36,8 @@
   margin-right: auto;
 }
 
-.sticky {}
+.sticky {
+}
 
 .nav {
   margin-bottom: 1rem;
@@ -46,7 +47,8 @@
   display: block;
   line-height: 1.75;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     text-decoration: underline;
   }
 
@@ -77,9 +79,9 @@
 @media (min-width: 48em) {
   .sticky {
     position: absolute;
-    right:  1rem;
+    right: 1rem;
     bottom: 1rem;
-    left:   1rem;
+    left: 1rem;
   }
 }
 
@@ -97,4 +99,3 @@
     margin-left: 0;
   }
 }
-

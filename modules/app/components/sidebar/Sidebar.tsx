@@ -12,7 +12,10 @@ import GoodReads from "icons/goodreads.svg"
 import Imdb from "icons/imdb.svg"
 import Link from "next/link"
 
-const Sidebar: React.FC<{ topTags: string[] }> = ({ topTags }) => {
+const Sidebar: React.FC<{ topTags: string[]; post?: boolean }> = ({
+  topTags,
+  post,
+}) => {
   const socialButtons = [
     { icon: LinkedIn, url: consts.links.linkedIn, name: "LinkedIn" },
     { icon: Facebook, url: consts.links.facebook, name: "Facebook" },
@@ -27,11 +30,20 @@ const Sidebar: React.FC<{ topTags: string[] }> = ({ topTags }) => {
     <div className={styles.r}>
       <div className={cn(comp.container, styles.sticky)}>
         <div className={styles.about}>
-          <h1>
-            <Link href="/" prefetch={false}>
-              <a>{consts.mainHeading}</a>
-            </Link>
-          </h1>
+          {post && (
+            <h2>
+              <Link href="/" prefetch={false}>
+                <a>{consts.mainHeading}</a>
+              </Link>
+            </h2>
+          )}
+          {!post && (
+            <h1>
+              <Link href="/" prefetch={false}>
+                <a>{consts.mainHeading}</a>
+              </Link>
+            </h1>
+          )}
           <div className={styles.socialButtons}>
             {socialButtons.map((sb) => (
               <a

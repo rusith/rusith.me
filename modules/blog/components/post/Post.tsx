@@ -87,10 +87,10 @@ const Post: React.FC<Props> = ({ post, topTags, relatedPosts }) => {
 
   return (
     <>
-      <Sidebar topTags={topTags} />
+      <Sidebar topTags={topTags} post />
       <div className={comp.content}>
         <div>
-          <h2 className={styles.title}>{post.title}</h2>
+          <h1 className={styles.title}>{post.title}</h1>
           <div className={styles.tags}>
             {post.tags.map((tag) => (
               <Link href={url + "/tag/" + tag} key={tag} prefetch={false}>
