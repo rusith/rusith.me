@@ -13,37 +13,36 @@ path: /re-usable-presto-worker-image-ec2
 oldPath: /2019/07/25/re-usable-presto-worker-image
 ---
 
-
 When you have to create a Presto cluster, managing a lot of workers is a pain. So people have built different tools around it to make this easy. but when you don't have any tool like that for the rescue, you can use this approach to set up a machine image that can be used to run as many workers as you want without doing any configuration on each machine.
 
 Okay, first you need to get this right on one instance.
 
-Before you begin, make sure 
-* That you have a working coordinator instance.
-* You have a security group for your coordinator node
+Before you begin, make sure
+
+- That you have a working coordinator instance.
+- You have a security group for your coordinator node
 
 Okay, Assuming you have a working coordinator node, let's start creating our Presto worker image.
 
 Create a security group for the worker nodes and allow traffic from the coordinator and allow traffic from the same security group. Also, edit the coordinator group to allow traffic from the worker group.
 
-
 <img alt="Coordinator config" src="$$base_url/post-data/2019-07-25-re-usable-presto-worker/sg-coordinator.png">
 
 <img alt="Worker config" src="$$base_url/post-data/2019-07-25-re-usable-presto-worker/sg-worker.png">
 
-
 Okay, Now our security rules are ready. lets install Presto.
 Spin up a node and connect to it.
 
-Now we can download and install Presto. (copy the  latest version link from the Presto website)
+Now we can download and install Presto. (copy the latest version link from the Presto website)
 
 ```sh
 cd ~
 wget https://repo1.maven.org/maven2/io/prestosql/presto-server/316/presto-server-316.tar.gz -O ./presto.tar.gz
 tar -xvzf presto.tar.gz # extract the archive
 mv ./presto-server-316 ./presto #move to the ~/presto folder
-rm ./presto.tar.gz 
+rm ./presto.tar.gz
 ```
+
 Okay, Now we should install the required tools which are Java and Python.
 
 ```sh
@@ -94,7 +93,6 @@ discovery.uri=http://<coordinator ip>:8081
 
 You can also configure catalogs at this time.
 
-
 Now give it a try by running Presto.
 
 ```sh
@@ -102,16 +100,15 @@ cd ~/presto/bin
 ./launcher run
 ```
 
-
 If you get the service started message. you are ready to go ahead. you can stop Presto service now.
 
-Here comes the interesting part. in the `node.properties`  file, we have the value `ffffffff-ffff-ffff-ffff-ffffffffffff`. actually, this value should be a GUID.
+Here comes the interesting part. in the `node.properties` file, we have the value `ffffffff-ffff-ffff-ffff-ffffffffffff`. actually, this value should be a GUID.
 
 So what we are going to do is to auto-generate a GUID and replace this value when the system is starting. and run Presto as a service.
 
 Let's create a script that will run at startup and start Presto service.
 
-create the file `~/runpresto.sh` and put the content 
+create the file `~/runpresto.sh` and put the content
 
 ```sh
 #!/bin/sh -
@@ -124,7 +121,7 @@ sed -i "s/ffffffff-ffff-ffff-ffff-ffffffffffff/$(uuidgen)/" /home/ubuntu/presto/
 And make the file runnable.
 
 ```sh
-chmod u+x ~/runpresto.sh 
+chmod u+x ~/runpresto.sh
 ```
 
 Now we can run this script at startup. for that, we can use `systemd`.
@@ -162,7 +159,6 @@ you can also check the Presto dashboard to see if the worker is connected.
 Now, stop the instance and create a machine image from it.
 
 <img alt="Presto Service Running" src="$$base_url/post-data/2019-07-25-re-usable-presto-worker/worker-image.png">
-
 
 Now you can use this machine image to run as many workers you want.
 
