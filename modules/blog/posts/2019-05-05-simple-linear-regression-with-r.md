@@ -21,7 +21,7 @@ math:
 
 <div class="$$styles.linksBox">
   <span class="$$styles.alsoRead">Also read</span>
-  <p><a target="_blank" href="$$base_url/2019/05/04/data-preprocessing-with-r"> Data pre-processing with R</a></p>
+  <p><a target="_blank" href="$$base_url/2019/05/04/data-preprocessing-with-r/"> Data pre-processing with R</a></p>
 </div>
 
 Regression models are used to predict real values such as salary, spending, income. Simple linear regression is a model of regression which is used to identify the correlation between two variables and possibly predict the dependent variable by using the independent variable.
