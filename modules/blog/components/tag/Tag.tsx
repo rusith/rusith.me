@@ -51,7 +51,6 @@ const Tag: React.FC<Props> = ({ tag, posts, topTags, tags }) => {
           <meta name="robots" content="noindex,follow" key="robots" />
           <meta property="og:url" content={thisTagUrl} key="og_url" />
           <link rel="canonical" href={thisTagUrl} key="canonical" />
-          <meta property="canonical" content={thisTagUrl} key="canonical" />
         </Head>
       </div>
     </>
