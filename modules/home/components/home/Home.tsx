@@ -14,13 +14,7 @@ type Props = {
   pageNumber: number
 }
 
-const Home: React.FC<Props> = ({
-  topTags,
-  latestPosts,
-  hasNextPage,
-  hasPreviousPage,
-  pageNumber,
-}) => {
+const Home: React.FC<Props> = ({ topTags, latestPosts, hasNextPage, hasPreviousPage, pageNumber }) => {
   const getPageLink = (pageNumber: number) => {
     if (pageNumber === 1) {
       return url
@@ -52,11 +46,7 @@ const Home: React.FC<Props> = ({
               <span className={styles.postDate}>{p.dateCreatedFormatted}</span>
 
               {p.banner && (
-                <img
-                  src={p.banner}
-                  className={styles.postBanner}
-                  alt={"Post banner for post - " + p.title}
-                ></img>
+                <img src={p.banner} className={styles.postBanner} alt={"Post banner for post - " + p.title}></img>
               )}
               {p.description}
             </div>
@@ -70,9 +60,7 @@ const Home: React.FC<Props> = ({
             </Link>
           )}
 
-          {!hasPreviousPage && (
-            <span className={styles.paginationItem}>Newer</span>
-          )}
+          {!hasPreviousPage && <span className={styles.paginationItem}>Newer</span>}
 
           {hasNextPage && (
             <Link href={getPageLink(pageNumber + 1)} prefetch={false}>

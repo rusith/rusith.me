@@ -4,13 +4,7 @@ import styles from "./Post.module.scss"
 import comp from "styles/comp.module.scss"
 import React, { useEffect } from "react"
 import Link from "next/link"
-import {
-  defaultBanner,
-  profilePicture,
-  rusithFullName,
-  twitterHandle,
-  url,
-} from "consts"
+import { defaultBanner, profilePicture, rusithFullName, twitterHandle, url } from "consts"
 import IPostLink from "modules/blog/models/IPostLink"
 import { DiscussionEmbed } from "disqus-react"
 import Head from "next/head"
@@ -30,7 +24,7 @@ export function getSchema(post) {
     author: {
       "@type": "Person",
       name: rusithFullName,
-      url: `${url}/about`,
+      url: `${url}/about`
     },
     keywords: post.tags.join(","),
     url: post.fullUrl,
@@ -38,12 +32,12 @@ export function getSchema(post) {
     copyrightHolder: {
       "@type": "Person",
       name: rusithFullName,
-      url: `${url}/about`,
+      url: `${url}/about`
     },
     copyrightYear: "2021",
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": url,
+      "@id": url
     },
     publisher: {
       "@type": "Organization",
@@ -51,9 +45,9 @@ export function getSchema(post) {
       url: url + "/about",
       logo: {
         "@type": "ImageObject",
-        url: profilePicture,
-      },
-    },
+        url: profilePicture
+      }
+    }
   } as any
 
   schema.image = post.banner ? post.banner : defaultBanner
@@ -81,7 +75,7 @@ const Post: React.FC<Props> = ({ post, topTags, relatedPosts }) => {
   // reload MathJax if necessary
   useEffect(() => {
     if (post.math && (window as any).MathJax) {
-      (window as any).MathJax.Hub.Typeset()
+      ;(window as any).MathJax.Hub.Typeset()
     }
   }, [post.path])
 
@@ -126,7 +120,7 @@ const Post: React.FC<Props> = ({ post, topTags, relatedPosts }) => {
             url: post.fullUrl,
             identifier: post.path,
             title: post.title,
-            language: "en-US",
+            language: "en-US"
           }}
         />
       </div>
@@ -137,37 +131,19 @@ const Post: React.FC<Props> = ({ post, topTags, relatedPosts }) => {
         <link rel="canonical" href={post.fullUrl} key="canonical" />
         <meta property="og:title" content={post.title} key="og_title" />
         <meta property="og:url" content={post.fullUrl} key="og_url" />
-        <meta
-          property="og:description"
-          content={post.description}
-          key="og_description"
-        />
-        <meta
-          property="og:site_name"
-          content="Rusith's blog"
-          key="og_site_name"
-        />
+        <meta property="og:description" content={post.description} key="og_description" />
+        <meta property="og:site_name" content="Rusith's blog" key="og_site_name" />
         <meta property="og:locale" content="en_US" key="og_locale" />
         <meta property="og:type" content="blog" key="og_type" />
-        <meta
-          property="twitter:description"
-          content={post.about}
-          key="twitter_description"
-        />
+        <meta property="twitter:description" content={post.about} key="twitter_description" />
 
         {!!post.banner && (
           <>
             <meta property="og:image" content={post.banner} key="og_image" />
-            <meta
-              name="twitter:card"
-              content="summary_large_image"
-              key="twitter_card"
-            />
+            <meta name="twitter:card" content="summary_large_image" key="twitter_card" />
           </>
         )}
-        {!post.banner && (
-          <meta name="twitter:card" content="summary" key="twitter_card" />
-        )}
+        {!post.banner && <meta name="twitter:card" content="summary" key="twitter_card" />}
         {post.math && (
           <script
             async
@@ -176,11 +152,7 @@ const Post: React.FC<Props> = ({ post, topTags, relatedPosts }) => {
         )}
 
         <meta name="twitter:title" content={post.title} key="twitter_title" />
-        <meta
-          name="twitter:image"
-          content={post.banner ?? defaultBanner}
-          key="twitter_image"
-        />
+        <meta name="twitter:image" content={post.banner ?? defaultBanner} key="twitter_image" />
         <meta name="twitter:site" content={twitterHandle} key="twitter_site" />
 
         <script

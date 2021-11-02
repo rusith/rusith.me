@@ -1,4 +1,4 @@
-const withImages = require('next-images')
+import withImages from "next-images"
 module.exports = withImages({
-    trailingSlash: true
+  trailingSlash: true
 })

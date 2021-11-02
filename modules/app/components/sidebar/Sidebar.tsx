@@ -12,10 +12,7 @@ import GoodReads from "icons/goodreads.svg"
 import Imdb from "icons/imdb.svg"
 import Link from "next/link"
 
-const Sidebar: React.FC<{ topTags: string[]; post?: boolean }> = ({
-  topTags,
-  post,
-}) => {
+const Sidebar: React.FC<{ topTags: string[]; post?: boolean }> = ({ topTags, post }) => {
   const socialButtons = [
     { icon: LinkedIn, url: consts.links.linkedIn, name: "LinkedIn" },
     { icon: Facebook, url: consts.links.facebook, name: "Facebook" },
@@ -23,7 +20,7 @@ const Sidebar: React.FC<{ topTags: string[]; post?: boolean }> = ({
     { icon: Github, url: consts.links.github, name: "Github" },
     { icon: Gitlab, url: consts.links.gitlab, name: "Gitlab" },
     { icon: GoodReads, url: consts.links.goodReads, name: "GoodReads" },
-    { icon: Imdb, url: consts.links.imdb, name: "IMDB" },
+    { icon: Imdb, url: consts.links.imdb, name: "IMDB" }
   ]
 
   return (
@@ -46,12 +43,7 @@ const Sidebar: React.FC<{ topTags: string[]; post?: boolean }> = ({
           )}
           <div className={styles.socialButtons}>
             {socialButtons.map((sb) => (
-              <a
-                href={sb.url}
-                className={styles.socialButton}
-                target="_blank"
-                key={sb.name}
-              >
+              <a href={sb.url} className={styles.socialButton} target="_blank" key={sb.name} rel="noreferrer">
                 <img alt={sb.name + " icon"} src={sb.icon} />
               </a>
             ))}

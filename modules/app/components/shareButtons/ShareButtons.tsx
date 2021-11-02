@@ -12,6 +12,7 @@ const ShareButtons: React.FC<{ url: string }> = ({ url }) => {
         target="_blank"
         className="sbutton fb"
         title="Share on Facebook"
+        rel="noreferrer"
       >
         <img alt="Facebook icon" src={Facebook} />
       </a>
@@ -20,6 +21,7 @@ const ShareButtons: React.FC<{ url: string }> = ({ url }) => {
         target="_blank"
         className="sbutton twitt"
         title="Share on Twitter"
+        rel="noreferrer"
       >
         <img alt="Twitter icon" src={Twitter} />
       </a>
@@ -28,6 +30,7 @@ const ShareButtons: React.FC<{ url: string }> = ({ url }) => {
         target="_blank"
         className="sbutton linkedin"
         title="Share on Linkedin"
+        rel="noreferrer"
       >
         <img alt="LinkedIn icon" src={LinkedIn} />
       </a>
