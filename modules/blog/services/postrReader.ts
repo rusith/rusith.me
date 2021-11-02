@@ -13,7 +13,7 @@ export async function readPost(file: FileInfo): Promise<IPost> {
     const attributes = processAttributes(frontParsed.attributes)
 
     const showdownConverter = new showdown.Converter({
-        extensions: [showdownHighlight],
+        extensions: [showdownHighlight({})],
     })
     const parsedContent =  processContent(attributes, showdownConverter.makeHtml(postBody))
 

@@ -122,6 +122,7 @@ export async function getStaticProps(a) {
   }
 
   const post = await getPostForPath(path)
+  
   if (post) {
     return getPostProps(post)
   }

@@ -22,8 +22,8 @@ export function processAttributes(attributes: any): IPostAttributes {
         dateModified: attributes.dateModified?.toString(),
         datePublished: attributes.datePublished?.toString(),
         fullUrl: new URL(path, url).href,
-        path,
-        oldPath
+        path: path || null,
+        oldPath: oldPath || null
     }
 }
 
