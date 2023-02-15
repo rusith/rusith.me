@@ -1,15 +1,20 @@
 .root {
     display: flex;
+    flex-direction: column;
     margin-top: 30px;
 }
 .image {
     display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 400px;
     img {
         object-fit: contain;
     }
 }
 
 .info {
+    margin-top: 20px;
     display: flex;
     margin-left: 20px;
     border-left: 3px solid lightblue;

@@ -61,27 +61,15 @@ const Login: React.FC<Props> = ({ loading, error, doLogin }) => {
 
   return (
     <div className="log-in">
-      {loading && (
-        <img data-testid="loader" alt="Loading" className="loading" />
-      )}
+      {loading && <img data-testid="loader" alt="Loading" className="loading" />}
       {showError && (
         <p data-testid="errorMessage" className="error">
           {error}
         </p>
       )}
       <form onSubmit={handleLogin}>
-        <input
-          data-testid="emailInput"
-          required
-          type="email"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          data-testid="passwordInput"
-          required
-          type="password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
+        <input data-testid="emailInput" required type="email" onChange={(e) => setEmail(e.target.value)} />
+        <input data-testid="passwordInput" required type="password" onChange={(e) => setPassword(e.target.value)} />
 
         <button type="submit" data-testid="loginTrigger">
           Log In
@@ -93,11 +81,11 @@ const Login: React.FC<Props> = ({ loading, error, doLogin }) => {
 
 const mapStateToProps = (state: ILoginState): ILoginProps => ({
   error: state.error,
-  loading: state.loading,
+  loading: state.loading
 })
 
 const mapDispatchToProps = {
-  doLogin: login,
+  doLogin: login
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)
@@ -109,7 +97,7 @@ And in the same location, the state,
 export function login(loginInfo) {
   return {
     payload: loginInfo,
-    type: "LOGIN",
+    type: "LOGIN"
   }
 }
 
@@ -143,7 +131,7 @@ function renderComponent(state: ILoginState) {
         <LogIn />
       </Provider>
     ),
-    store,
+    store
   ]
 }
 ```
@@ -159,22 +147,20 @@ the login action when the inputs are valid.
 it("should dispatch login action if inputs are valid", () => {
   const [{ getByTestId }, store] = renderComponent({
     loading: false,
-    error: null,
+    error: null
   })
 
   fireEvent.change(getByTestId("emailInput"), {
-    target: { value: "user_one@gmail.com" },
+    target: { value: "user_one@gmail.com" }
   })
 
   fireEvent.change(getByTestId("passwordInput"), {
-    target: { value: "password" },
+    target: { value: "password" }
   })
 
   fireEvent.click(getByTestId("loginTrigger"))
 
-  expect(store.getActions()).toContainEqual(
-    login({ email: "user_one@gmail.com", password: "password" })
-  )
+  expect(store.getActions()).toContainEqual(login({ email: "user_one@gmail.com", password: "password" }))
 })
 ```
 
@@ -217,7 +203,7 @@ it("should show error if an error is available", () => {
   renderComponent({ loading: false, error: null })
   const [{ getByTestId }] = renderComponent({
     loading: false,
-    error: "something went wrong",
+    error: "something went wrong"
   })
 
   expect(getByTestId("errorMessage")).toHaveTextContent("something went wrong")
@@ -245,7 +231,7 @@ describe("Login", () => {
           <LogIn />
         </Provider>
       ),
-      store,
+      store
     ]
   }
 
@@ -254,34 +240,32 @@ describe("Login", () => {
   it("should dispatch login action if inputs are valid", () => {
     const [{ getByTestId }, store] = renderComponent({
       loading: false,
-      error: null,
+      error: null
     })
 
     fireEvent.change(getByTestId("emailInput"), {
-      target: { value: "user_one@gmail.com" },
+      target: { value: "user_one@gmail.com" }
     })
 
     fireEvent.change(getByTestId("passwordInput"), {
-      target: { value: "password" },
+      target: { value: "password" }
     })
 
     fireEvent.click(getByTestId("loginTrigger"))
 
-    expect(store.getActions()).toContainEqual(
-      login({ email: "user_one@gmail.com", password: "password" })
-    )
+    expect(store.getActions()).toContainEqual(login({ email: "user_one@gmail.com", password: "password" }))
   })
 
   it("should show loading indicator when loading is set to true", () => {
     const [{ queryByTestId }] = renderComponent({
-      loading: true,
+      loading: true
     } as ILoginState)
     expect(queryByTestId("loader")).toBeTruthy()
   })
 
   it("should not show loading indicator when loading is set to false", () => {
     const [{ queryByTestId }] = renderComponent({
-      loading: false,
+      loading: false
     } as ILoginState)
     expect(queryByTestId("loader")).toBeFalsy()
   })
@@ -290,12 +274,10 @@ describe("Login", () => {
     renderComponent({ loading: false, error: null })
     const [{ getByTestId }] = renderComponent({
       loading: false,
-      error: "something went wrong",
+      error: "something went wrong"
     })
 
-    expect(getByTestId("errorMessage")).toHaveTextContent(
-      "something went wrong"
-    )
+    expect(getByTestId("errorMessage")).toHaveTextContent("something went wrong")
   })
 })
 ```

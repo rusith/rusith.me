@@ -35,11 +35,11 @@ const Sidebar: React.FC<{ topTags: string[]; post?: boolean }> = ({ topTags, pos
             </h2>
           )}
           {!post && (
-            <h1>
+            <h2>
               <Link href="/" prefetch={false}>
                 <a>{consts.mainHeading}</a>
               </Link>
-            </h1>
+            </h2>
           )}
           <div className={styles.socialButtons}>
             {socialButtons.map((sb) => (
@@ -55,7 +55,7 @@ const Sidebar: React.FC<{ topTags: string[]; post?: boolean }> = ({ topTags, pos
             {topTags.map((t) => (
               <Link href={"/tag/" + t} key={t} prefetch={false}>
                 <a>
-                  <span className={cn(styles.tag)}>{t}</span>
+                  <span className={cn(styles.tag)}>#{t}</span>
                 </a>
               </Link>
             ))}

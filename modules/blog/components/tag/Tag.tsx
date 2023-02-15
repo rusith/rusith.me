@@ -40,7 +40,7 @@ const Tag: React.FC<Props> = ({ tag, posts, topTags, tags }) => {
           {tags.map((t) => (
             <Link href={url + "/tag/" + t} prefetch={false} key={t}>
               <a>
-                <code className="highligher-rouge">{t}</code>
+                <code className="highligher-rouge">#{t}</code>
               </a>
             </Link>
           ))}

@@ -33,10 +33,7 @@ const About: React.FC<{ topTags: string[] }> = ({ topTags }) => {
         </div>
         <div className={styles.info}>
           <p>
-            I am Shanaka Rusith. I like to learn new things and do experiments. I write some of them in this blog.
-            <br />
-            Professionally, I am a software engineer with 3+ years of experience. Currently working as a full-stack
-            developer.
+            <b>Hello!</b>, I am a senior software engineer with 7 years of industry experience.
             <br />I like reading (
             <a href="http://goodreads.com/rusith" target="_blank" rel="noreferrer">
               Goodreads
@@ -45,8 +42,8 @@ const About: React.FC<{ topTags: string[] }> = ({ topTags }) => {
             <a href="https://www.imdb.com/user/ur81064939/" target="_blank" rel="noreferrer">
               Imdb
             </a>
-            ). I like to read non-fiction especially Business Philosophy and Psychology books. and enjoy watching good
-            films especially old ones.
+            ). I like to read non-fiction especially Business, Philosophy and Psychology books. and enjoy watching good
+            movies especially old ones.
           </p>
         </div>
       </div>

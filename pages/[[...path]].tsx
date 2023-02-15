@@ -42,11 +42,11 @@ const HomePage: React.FC = (props: any) => {
 }
 
 async function getAboutProps() {
-  const top3Tags = await getTopTags(3)
+  const topTags = await getTopTags(10)
   return {
     props: {
       page: "About",
-      topTags: top3Tags
+      topTags
     }
   }
 }
@@ -54,33 +54,33 @@ async function getAboutProps() {
 async function getTagProps(tag: string) {
   const posts = await getPostsForTag(tag)
   const tags = await getAllTags(tag)
-  const top3Tags = await getTopTags(3)
+  const topTags = await getTopTags(10)
   return {
     props: {
       page: "Tag",
       tag,
       posts,
       tags,
-      topTags: top3Tags
+      topTags
     }
   }
 }
 
 async function getPostProps(post: IPost) {
-  const top3Tags = await getTopTags(3)
+  const topTags = await getTopTags(10)
   const relatedPosts = await getRelatedPosts(post)
   return {
     props: {
       post,
       page: "Post",
-      topTags: top3Tags,
+      topTags,
       relatedPosts
     }
   }
 }
 
 async function getHomeProps(page = 1) {
-  const top3Tags = await getTopTags(3)
+  const topTags = await getTopTags(10)
   const latestPosts = await getLatestPosts(page)
   const pageCount = await getAvailablePageCount()
   const allPosts = await getAllPostsForHomePage()
@@ -98,7 +98,7 @@ async function getHomeProps(page = 1) {
 
   return {
     props: {
-      topTags: top3Tags,
+      topTags: topTags,
       latestPosts,
       page: "Home",
       hasNextPage,

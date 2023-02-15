@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
-
+ @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 html {
-  font-family: "PT Sans", Helvetica, Arial, sans-serif;
+  font-family: 'Poppins', sans-serif;
+
 }
 @media (min-width: 48em) {
   html {
@@ -38,7 +38,7 @@ html {
 
 body {
   color: #515151;
-  background-color: #fff;
+  background-color: #ffffff;
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
 }

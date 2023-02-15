@@ -39,7 +39,7 @@ const Home: React.FC<Props> = ({ topTags, latestPosts, hasNextPage, hasPreviousP
               <div className={styles.tags}>
                 {p.tags.map((tag) => (
                   <Link href={url + "/tag/" + tag} key={tag} prefetch={false}>
-                    <a className={styles.tag}>{tag}</a>
+                    <a className={styles.tag}>#{tag}</a>
                   </Link>
                 ))}
               </div>

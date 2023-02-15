@@ -88,7 +88,7 @@ const Post: React.FC<Props> = ({ post, topTags, relatedPosts }) => {
           <div className={styles.tags}>
             {post.tags.map((tag) => (
               <Link href={url + "/tag/" + tag} key={tag} prefetch={false}>
-                <a className={styles.tag}>{tag}</a>
+                <a className={styles.tag}>#{tag}</a>
               </Link>
             ))}
           </div>
