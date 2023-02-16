@@ -9,7 +9,6 @@ import Twitter from "icons/twitter-square.svg"
 import Github from "icons/github-square.svg"
 import Gitlab from "icons/gitlab.svg"
 import GoodReads from "icons/goodreads.svg"
-import Imdb from "icons/imdb.svg"
 import Link from "next/link"
 
 const Sidebar: React.FC<{ topTags: string[]; post?: boolean }> = ({ topTags, post }) => {
