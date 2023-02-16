@@ -9,11 +9,12 @@ import { removeEndingSlash } from "utils/path"
 
 export async function getAllPosts(): Promise<IPost[]> {
   const cache = "./all_posts_cache.json"
-  let allPosts = []
-  if (fileExists(cache)) {
-    allPosts = JSON.parse(await readFile(cache)) as IPost[]
-    if (allPosts.length) {
-      return allPosts
+  if (isPord) {
+    if (fileExists(cache)) {
+      const allPosts = JSON.parse(await readFile(cache)) as IPost[]
+      if (allPosts.length) {
+        return allPosts
+      }
     }
   }
   const ap = _.orderBy(

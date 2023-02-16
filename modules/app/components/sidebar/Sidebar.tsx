@@ -9,18 +9,16 @@ import Twitter from "icons/twitter-square.svg"
 import Github from "icons/github-square.svg"
 import Gitlab from "icons/gitlab.svg"
 import GoodReads from "icons/goodreads.svg"
-import Imdb from "icons/imdb.svg"
 import Link from "next/link"
 
 const Sidebar: React.FC<{ topTags: string[]; post?: boolean }> = ({ topTags, post }) => {
   const socialButtons = [
     { icon: LinkedIn, url: consts.links.linkedIn, name: "LinkedIn" },
-    { icon: Facebook, url: consts.links.facebook, name: "Facebook" },
-    { icon: Twitter, url: consts.links.facebook, name: "Twitter" },
     { icon: Github, url: consts.links.github, name: "Github" },
     { icon: Gitlab, url: consts.links.gitlab, name: "Gitlab" },
     { icon: GoodReads, url: consts.links.goodReads, name: "GoodReads" },
-    { icon: Imdb, url: consts.links.imdb, name: "IMDB" }
+    { icon: Twitter, url: consts.links.facebook, name: "Twitter" },
+    { icon: Facebook, url: consts.links.facebook, name: "Facebook" }
   ]
 
   return (

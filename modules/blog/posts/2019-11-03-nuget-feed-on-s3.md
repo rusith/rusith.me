@@ -59,13 +59,7 @@ The IAM policy should be something like below. It will give write access to the 
     {
       "Sid": "VisualEditor0",
       "Effect": "Allow",
-      "Action": [
-        "s3:PutObject",
-        "s3:GetObjectAcl",
-        "s3:GetObject",
-        "s3:ListBucket",
-        "s3:DeleteObject"
-      ],
+      "Action": ["s3:PutObject", "s3:GetObjectAcl", "s3:GetObject", "s3:ListBucket", "s3:DeleteObject"],
       "Resource": ["arn:aws:s3:::<bucket name>/*", "arn:aws:s3:::<bucket name>"]
     },
     {
