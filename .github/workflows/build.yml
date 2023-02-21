@@ -6,8 +6,6 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
-    env:
-      NODE_OPTIONS: "--openssl-legacy-provider"
     steps:
       - uses: actions/checkout@v1
         with:
