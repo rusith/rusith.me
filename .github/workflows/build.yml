@@ -6,10 +6,11 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
+    env:
+      NODE_OPTIONS: --openssl-legacy-provider
     steps:
       - uses: actions/checkout@v1
         with:
-          persist-credentials: false
           fetch-depth: 0
       - name: Setup Node JS
         uses: actions/setup-node@v1
@@ -28,5 +29,3 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: live
           force: true
-
-          
