@@ -17,7 +17,7 @@ const Sidebar: React.FC<{ topTags: string[]; post?: boolean }> = ({ topTags, pos
     { icon: Github, url: consts.links.github, name: "Github" },
     { icon: Gitlab, url: consts.links.gitlab, name: "Gitlab" },
     { icon: GoodReads, url: consts.links.goodReads, name: "GoodReads" },
-    { icon: Twitter, url: consts.links.facebook, name: "Twitter" },
+    { icon: Twitter, url: consts.links.twitter, name: "Twitter" },
     { icon: Facebook, url: consts.links.facebook, name: "Facebook" }
   ]
 
