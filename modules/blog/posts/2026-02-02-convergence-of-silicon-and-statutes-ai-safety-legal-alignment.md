@@ -8,7 +8,7 @@ dateCreated: 2026-02-02
 dateModified: 2026-02-02
 datePublished: 2026-02-02
 about: Exploring the emerging framework of legal alignment as a bridge between existential AI safety and socio-technical ethics.
-banner: /post-data/default-banner.png
+banner: /post-data/2026-02-02-ai-legal-alignment/banner.png
 path: /convergence-of-silicon-and-statutes-ai-safety-legal-alignment
 ---
 
