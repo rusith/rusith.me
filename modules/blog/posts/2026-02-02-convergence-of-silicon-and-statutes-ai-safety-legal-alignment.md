@@ -12,6 +12,8 @@ banner: /post-data/2026-02-02-ai-legal-alignment/banner.png
 path: /convergence-of-silicon-and-statutes-ai-safety-legal-alignment
 ---
 
+<img alt="Page banner" class="$$styles.banner" src="$$page_banner_full_path">
+
 As we move deeper into 2026, the discourse surrounding Artificial Intelligence has shifted from speculative anxieties about "god-like" AGIs to the rigorous, multi-disciplinary work of integration. For years, the field of AI alignment has operated along two largely parallel tracks: **Safety**, which focuses on scaled intelligence, deceptive behaviors, and existential risks; and **Ethics**, which addresses immediate harms like algorithmic bias and social inequality. 
 
 However, a new paradigm is emerging that promises to bridge this divide: **Legal Alignment**.
