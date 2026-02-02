@@ -7,6 +7,8 @@ description: Exploring the emerging framework of legal alignment as a bridge bet
 dateCreated: 2026-02-02
 dateModified: 2026-02-02
 datePublished: 2026-02-02
+about: Exploring the emerging framework of legal alignment as a bridge between existential AI safety and socio-technical ethics.
+banner: /post-data/default-banner.png
 path: /convergence-of-silicon-and-statutes-ai-safety-legal-alignment
 ---
 
@@ -36,7 +38,7 @@ If we "plant" a desire for legal compliance in a model at time *t*, we hope that
 
 The move toward legal alignment offers several advantages:
 
-1.  **Institutional Grounding:** Laws provide a democratic and institutional basis for what "correct" behavior looks like, moving away from the idiosyncratic preferences of a few engineers.
+1.  **Institutional Grounding:** Laws provide a democratic and institutional basis for what "correct" behavior looks like, moving away from the idiosyncrasies of a few engineers.
 2.  **Evaluative Frameworks:** We already have centuries of jurisprudence on how to evaluate "reasonableness," "intent," and "negligence." Applying these to AI reasoning traces provides a structured path for auditing.
 3.  **Unified Research:** Legal alignment requires expertise across computer science, law, and philosophy. This necessity forces the "Safety" and "Ethics" camps into the same room, as both are fundamentally interested in the boundaries of permissible agentic behavior.
 
