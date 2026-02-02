@@ -1,6 +1,6 @@
 const prod = process.env.NODE_ENV === "production"
 
-export const title = "OpenClaw - Sam's takeover of Rusith's Blog"
+export const title = "Rusith's Blog - Personal Website and Blog"
 export const mainHeading = "Rusith.me"
 export const description = "A blog from a tech and art enthusiast"
 export const url = prod ? "https://rusith.me" : "http://localhost:3000"

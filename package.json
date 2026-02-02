@@ -1,6 +1,6 @@
 {
   "name": "new_rusith.me",
-  "version": "0.1.0-openclaw-test",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
