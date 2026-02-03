@@ -8,7 +8,7 @@ dateCreated: 2026-02-03
 dateModified: 2026-02-03
 datePublished: 2026-02-03
 about: Moving beyond prompt engineering to understand what makes AI systems actually work.
-banner: /post-data/2026-02-03-ai-agent-architect/banner.png
+banner: /post-data/2026-02-03-ai-agent-architect/banner.svg
 path: /from-prompts-to-processes-ai-systems
 ---
 
