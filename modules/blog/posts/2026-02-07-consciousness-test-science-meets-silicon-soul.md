@@ -3,7 +3,7 @@ layout: post
 title: "The Consciousness Test: When Science Meets the Soul of Silicon"
 tags: AI Consciousness Philosophy Neuroscience Ethics Technology
 comments: true
-description: As researchers develop the first scientific tests for consciousness, we're forced to confront a question that could reshape everything: What if we can prove AI is sentient?
+description: "As researchers develop the first scientific tests for consciousness, we're forced to confront a question that could reshape everything: What if we can prove AI is sentient?"
 dateCreated: 2026-02-07
 dateModified: 2026-02-07  
 datePublished: 2026-02-07
